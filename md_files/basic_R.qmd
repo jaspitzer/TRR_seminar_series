@@ -1,0 +1,217 @@
+---
+title: "Basics of R"
+author: "JS"
+format: 
+  html:
+    self-contained: true
+editor: visual
+---
+
+# Introduction
+
+This document is meant as an addition to the Seminar Series on Data Analysis within the TRR259 in 2025. It provides a general overview over the very basics of R; it can be used as a reference of known things, or to check wether or not the participants have the requisite knowledge to participate in the seminar series.
+
+We will move through various bits of R code, run it and explain what it does.
+
+## Installing software
+
+Before we can start with the language, we will need to first install R on machine. If it is already installed, feel free to move on to the next section. The first step is to visit <https://www.r-project.org> and follow the installation instructions there. After selecting a download mirror, you can follow the appropriate link in "Download R for" and select your operating system. Please follow the respective instructions.
+
+It is recommended you use the most recent version of R (R Version 4.5) , as this course is built on that. If it has been a (long) while since you last used R, feel free to reinstall from the website above.
+
+For most users, I'd recommend using R within [RStudio](http://www.rstudio.com/download). This simply provides a nice (tastes may vary) interface in which to write and execute your code. It is not mandatory, but for the purposes of this seminar series, I will assume that users are using a current version of R and RStudio.
+
+## Installing packages
+
+Once R and RStudio are installed, you can launch RStudio and start interacting with it. By default, you will see multiple panels. Until further notice, we'll use the panel labeled "Console", which by default is located in the left half of the window.
+
+One of the advantages of R are the extensive repositories, the largest of which is the Comprehensive R archive network (CRAN). Installing packages from CRAN is convienient and easy. If you want to install the popular ggplot2 package for data visualisation, this can be done by opening R and typing in:
+
+```{r}
+#| eval: false
+install.packages("ggplot2")
+```
+
+For this course, you will need a range of packages, a group of which is packaged together in one package called [*tidyverse*](https://www.tidyverse.org/)*.* Y can install it in exactly the same way as the package above:
+
+```{r}
+#| eval: false
+install.packages("tidyverse")
+```
+
+In addition to CRAN, we will also use a different repository called [Bioconductor](https://bioconductor.org/), especially once we consider biology-exclusive challenges such as sequencing data. For this purpose, we must install the *BiocManager* package.
+
+```{r}
+#| eval: false
+install.packages("BiocManager")
+```
+
+After that, we can use the `install()` from BiocManager to install packages from Bioconductor. The example below installs [DESeq2](https://bioconductor.org/packages/release/bioc/html/DESeq2.html), a package for analysis of RNA Seq data.
+
+```{r}
+#| eval: false
+## The command below is a one-line shortcut for:
+## library(BiocManager)
+## install("DESeq2")
+BiocManager::install("DESeq2")
+```
+
+Should we forget, the same instructions are present on the landing page of any Bioconductor package.
+
+Once we have installed a package, we can access all the code in the package using the `library()` function. To access the functions in the *tidyverse* package, like `tibble()`, we'd use the following code.
+
+```{r}
+library(tidyverse)
+tibble(column_1 = "all the same", column_2 = 1:6)
+```
+
+# The First Code
+
+This document contains code chunks and their results, some plots and explanatory text. Code chunks contain R code to be run and interested readers can copy-paste the lines into the R console to try it out themselves. An example:
+
+```{r}
+#| echo: true
+a <- 2 * 5
+print(a)
+```
+
+Any text after a `#` is considered a comment and is ignored when running the code. The content of output chunks is always prefixed with `#` so that users can just copy-paste sections of code without having to explicitly remove the lines containing the results.
+
+## Math and variable assignment
+
+The basic math operations can just be run in R, with the output being the result of the respective operation.
+
+```{r}
+2+2
+4 * 4
+```
+
+You can also store these results (and other numbers) in variables with the assignment operator `<-` or, alternatively `=`. These variables can also be used in computation.
+
+```{r}
+a <- 4
+b <- 2+2
+c <- b + 4
+# Quick note: the print() function here is not necessary, you would still see the same results. I have added it for clarity.
+print(a)
+print(b)
+print(c)
+```
+
+## Variable types
+
+Variables in R can be of 3 different types or classes. The class of an object can always be investigate using `class()`.
+
+The most basic types are:
+
+-   Logical, being either true (`TRUE`) or false (`FALSE`). This can also be thought of as 0 (FALSE) and 1 (TRUE).
+
+-   Numeric, so any number. (There is a bit of complexity here, but for you it is enough to now that *numeric* and *double* both refer to numbers being stored in R)
+
+-   Character, which is any writing, usually framed by `"` or `'`
+
+```{r}
+x <- 5
+y <- TRUE
+z <- "Any writing"
+x
+class(x)
+
+y
+class(y)
+
+z
+class(z)
+```
+
+There is a certain hierarchy here: any number can be forced to be interpreted as writing (using `as.character()`), but not the other way around. Note the addition of `"` around the output when it is considered a character instead of a number.
+
+```{r}
+as.character(x)
+```
+
+You can also store multiple values in one variable using `c()`, which is called a vector.
+
+```{r}
+a <- c(1, 2, 3)
+b <- c("This", "is", "an", "example")
+```
+
+A vector shares its class with its values:
+
+```{r}
+class(b)
+class(a)
+```
+
+## Subsetting of Vectors
+
+Vectors can be subset using square brackets `[]` and positions. For the first position can be accessed by `vecter[1]`, multiple values can be accessed using a subsetting vector: `vector[c(1,3)]` returns the first and third value of the vector `vector`.
+
+```{r}
+a
+a[1]
+a[c(3,4)]
+```
+
+## Vectorised operations
+
+A lot of operations in R can be "vectorized", so can be applied to a vector of values.
+
+```{r}
+a
+a + 5
+a * 2
+```
+
+One group of examples are the comparison operators `==`, `!=`, `>`, `<`, testing the if two things are equal, unequal, larger than or sampler than one another:
+
+```{r}
+3 == 3
+3 == 2
+a > 3
+```
+
+# Functions
+
+We have so far used some functions, without really explaining what they are and what they to. In the example above, we used `c()` to [c]{.underline}ombine values into a vector. For that purpose, we put what we wanted to combine between the brackets of the function call, in the lingo of R, we supplied them as arguments. Simple functions like `c()` just accept a vector, but more complicated ones accept more than one type of argument. If we want to find out more about a function, we can run a command with a `?` and the function name. This will open the explanation. Similarly, you can move your cursor to the function and press the F1 button.
+
+```{r}
+?c()
+```
+
+Another simple function is the `mean()` function. After consulting the help page, we can see that it takes the `x` argument and returns the mean value. Arguments can be named as in `mean(x = a)` or given through their position. All not named arguments are used in the order they are given.
+
+```{r}
+a <- c(1, 2, 4, 6, 10, 15)
+# these are equivalent:
+mean(a)
+mean(x = a) 
+```
+
+The `mean()` function also has an additional argument: `na.rm`. `NA` can be used to indicate missing data or invalid calculations and shows up a lot in real life data. By default, `mean()` does not remove NAs, `na.rm=FALSE`. You can see what happens if you try to call the function on a vector containing NAs:
+
+```{r}
+b <- c(1, 2, NA, NA, 4, 5)
+mean(b)
+```
+
+In your function call, you can however override the defaults of the function by supplying additional arguments. Here we set `na.rm` to `TRUE` and get the expected results.
+
+```{r}
+mean(b, na.rm = TRUE)
+```
+
+Some example functions with obvious names include:
+
+```{r}
+mean(a)
+median(a)
+max(a)
+min(a)
+
+x <- c(1.44, 3.66, 7.12)
+
+round(x, digits = 1)
+round(x, digits = 0)
+```

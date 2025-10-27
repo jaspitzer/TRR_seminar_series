@@ -1,0 +1,92 @@
+---
+title: "data generation"
+author: "JS"
+format: html
+editor: visual
+---
+
+```{r}
+library(here)
+library(tidyverse)
+```
+
+## Aneurysm
+
+```{r}
+ns = 300
+set.seed(20102025)
+
+df_ctrl <- tibble(diagnosis = rep("CTRL", ns),
+                  abdominal_diameter = rnorm(ns, 2, 0.2),
+                  thoracic_diameter =  rnorm(ns, 2, 0.2),
+                  age = round(runif(ns, 45, 80)),
+                  male = rbinom(ns, 1, 0.5),
+                  hypertension = rbinom(ns, 1, 0.2),
+                  cad =  rbinom(ns, 1, 0.1),
+                  artheriosclerosis = rbinom(ns, 1, 0.5),
+                  bmi = round(rnorm(ns, 24, 2), 2))
+
+df_aaa <- tibble(diagnosis = rep("AAA", ns),
+                  abdominal_diameter = rnorm(ns, 4, 0.8),
+                  thoracic_diameter =  rnorm(ns, 2, 0.1),
+                  age = round(runif(ns, 45, 80)),
+                  male = rbinom(ns, 1, 0.75),
+                  hypertension = rbinom(ns, 1, 0.5),
+                  cad =  rbinom(ns, 1, 0.15),
+                  artheriosclerosis = rbinom(ns, 1, 0.35),
+                  bmi = round(rnorm(ns, 28, 6), 2))
+
+
+df_taa <- tibble(diagnosis = rep("TAA", ns),
+                  abdominal_diameter = rnorm(ns, 2, 0.2),
+                  thoracic_diameter =  rnorm(ns, 4, 0.3),
+                  age = round(runif(ns, 45, 80)),
+                  male = rbinom(ns, 1, 0.75),
+                  hypertension = rbinom(ns, 1, 0.45),
+                  cad =  rbinom(ns, 1, 0.125),
+                  artheriosclerosis = rbinom(ns, 1, 0.35),
+                  bmi = round(rnorm(ns, 23, 2), 2))
+
+
+df <- list(df_ctrl,
+           df_aaa,
+           df_taa) %>% 
+  bind_rows()
+```
+
+```{r}
+df
+write_tsv(df, here("data", "aneurysm_survey", "example_data.txt"))
+write_csv(df, here("data", "aneurysm_survey", "example_data.csv"))
+write_csv2(df, here("data", "aneurysm_survey", "example_data2.csv"))
+
+writexl::write_xlsx(df, here("data", "aneurysm_survey", "example_data.xlsx"))
+```
+
+## Expression data
+
+```{r}
+data(airway, package="airway")
+library(SummarizedExperiment)
+airway
+colData(airway)
+```
+
+```{r}
+tmp <- rowData(airway) %>% as.data.frame() %>% 
+  filter(n() == 1, .by = symbol)
+
+dat <- airway[rownames(tmp), ]
+
+```
+
+```{r}
+annotation <- colData(dat) %>% as.data.frame()
+expression_data <- assay(dat, "counts") %>% as.data.frame()
+rownames(expression_data) <- rowData(dat)$symbol
+
+expression_data
+
+write_tsv(expression_data, here("data", "expression_data", "counts.txt"))
+write_tsv(annotation, here("data", "expression_data", "annotation.txt"))
+```

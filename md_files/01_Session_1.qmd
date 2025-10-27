@@ -1,0 +1,97 @@
+---
+title: "Data Structures and"
+author: "JS"
+format: html
+editor: visual
+---
+
+# Data structures and Data Wrangling
+
+Apart from variables and vectors, there are 4 more data structures
+
+-   factors
+
+-   matrix
+
+-   data frames
+
+-   lists
+
+## Factors
+
+This is a specialized version of a vector oftentimes used to store categorical data. It consists of the underlying vector of values and a separate argument called levels, which represents the different values in the factor.
+
+```{r}
+f  <- factor(c("C", "C", "C", "A", "A", "A"),
+             levels = c("A", "C"))
+
+sort(f)
+f <- relevel(f, "C")
+
+sort(f)
+```
+
+## Matrix
+
+```{r}
+m <- matrix(1:20, nrow = 5)
+m
+m[1,]
+m[,1]
+colnames(m) <- c("a", "b", "c", "d")
+m
+rownames(m) <- c("v", "w", "x", "y", "z")
+m
+
+m["x", "a"]
+```
+
+## Data Frame
+
+```{r}
+set.seed(259)
+df <- data.frame(diagnosis = rep(c("CTRL", "AAA"), each = 5), 
+                 diameter = c(rnorm(5, 5, 0.5), 
+                              rnorm(5, 2, 0.1)),
+                 age = round(runif(10, 45, 80)))
+df
+
+df[,1]
+df$diameter
+summary(df)
+
+
+df$diagnosis <- as.factor(df$diagnosis)
+
+summary(df)
+```
+
+## List
+
+```{r}
+examples <- list("a", c("c", "example"), df)
+examples[[1]]
+
+
+examples[1:2]
+
+
+length(examples)
+str(examples)
+
+```
+
+### Named lists
+
+```{r}
+ducks <- list(number_of_ducks = 3,
+              duck_names = c("Tick", "Trick", "Track"),
+              duck_info = df)
+ducks[[1]]
+ducks[["duck_info"]]
+ducks$duck_names
+```
+
+```{r}
+
+```

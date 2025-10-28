@@ -4,6 +4,11 @@ author: "JS"
 format: 
   html:
     self-contained: true
+    toc: true
+    toc-depth: 4
+    df-print: paged
+    grid: 
+      body-width: 1200px
 editor: visual
 ---
 

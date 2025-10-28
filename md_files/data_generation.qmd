@@ -1,7 +1,9 @@
 ---
 title: "data generation"
 author: "JS"
-format: html
+format: 
+  html:
+    self-contained: true
 editor: visual
 ---
 

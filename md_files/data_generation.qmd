@@ -84,10 +84,11 @@ dat <- airway[rownames(tmp), ]
 
 ```{r}
 annotation <- colData(dat) %>% as.data.frame()
-expression_data <- assay(dat, "counts") %>% as.data.frame()
+expression_data <- assay(dat, "counts") %>% as.data.frame() 
 rownames(expression_data) <- rowData(dat)$symbol
 
-expression_data
+expression_data <- expression_data %>% 
+  rownames_to_column("gene")
 
 write_tsv(expression_data, here("data", "expression_data", "counts.txt"))
 write_tsv(annotation, here("data", "expression_data", "annotation.txt"))

@@ -1,0 +1,80 @@
+---
+title: "Data visualisation, mean separation & Continuous data - TRR259 seminar Session 1"
+author: "JS"
+format: 
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 4
+    df-print: paged
+    grid: 
+      body-width: 1200px
+editor: visual
+---
+
+This document is meant as an addition to the Seminar Series on Data Analysis within the TRR259 in 2025. It is the companion document for the second Session. All materials can be accessed on the the [github](https://github.com/jaspitzer/TRR_seminar_series) repository. Today, we will be dealing with visualisation, mean separation and continuous data.
+
+In our explanation of data visualisation, we will make heavy use of the [ggplot2](https://ggplot2.tidyverse.org/) package from the tidyverse. We will explore its functions and the possibilities of customisation.
+
+For mean separation, we will perform fairly simple statistical analyses using various functions in R. The focus here is not a picking the right statistical test and optimising for statistical power; instead, we will be applying the test you already know and use, but inside R, in an automated way.
+
+# Projects and the here package
+
+One challenge in working on computational analyses is data (and analysis) organisation. One tool we will be applying is R projects and the [here](https://here.r-lib.org/index.html) package. You can install it using the `install.packages()` command.
+
+```{r}
+#| eval: false
+
+install.packages("here")
+```
+
+As always, we are loading in the tidyverse, but also the here package:
+
+```{r}
+library(here)
+library(tidyverse)
+```
+
+On its own, the `here()` function just returns the position of the project.
+
+```{r}
+here()
+```
+
+You specifiy a file location inside the project inside of `here()`, and a complete path will be generated. The code below will always generate a valid path to the example data, even if you move the project itself to a different location.
+
+```{r}
+here("data/aneurysm_survey/example_data.txt")
+```
+
+This of course becomes useful in the context of reading in data and files from your hard drive:
+
+```{r}
+df <- read_tsv(here("data/aneurysm_survey/example_data.txt"))
+```
+
+The `here()` function can also take the path in separate arguments. This is useful if you, like me, have to work on computers using different operating systems like macOS, Windows and linux. The file in the same location as above can also be written as below. The here package then formats into a path readable by any operating system.
+
+```{r}
+here("data", "aneurysm_data", "example_data.txt")
+```
+
+## Project folder organisation
+
+I usually have my projects organised in the following way:
+
+```{r}
+list.files(here(), include.dirs = T)
+```
+
+-   a data folder, containing all input data
+
+-   a folder called md_files, which contains all notebooks for the project
+
+-   a results folder, containing all results generated in the project
+
+-   depending on context, sometimes a scripts folder, containing self contained code bits
+
+In this case, there also is a "slides" folder, since this is the project for the seminar series.
+
+# ggplot2 and data visualisation

@@ -1,0 +1,156 @@
+---
+title: "solutions"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+```
+
+# Easy Tasks
+
+## E1, E2, E3
+
+```{r}
+words <- c("This", "is", "so", "grat")
+length(words)
+class(words)
+```
+
+## E3 (2)
+
+```{r}
+df <- read_tsv("data/aneurysm_survey/example_data.txt")
+```
+
+```{r}
+dim(df)
+colnames(df)
+```
+
+## E4
+
+```{r}
+df <- mutate(df, pat = paste("pat", 1:900, sep = "_"))
+```
+
+```{r}
+df %>% slice_max(age, n = 1)
+df %>% slice_min(thoracic_diameter, n = 1)
+df2 <- df %>% slice_min(thoracic_diameter, n = 1)
+df2$hypertension
+```
+
+## E5
+
+```{r}
+df %>% filter(thoracic_diameter > 3.5)
+```
+
+## E 6
+
+```{r}
+df %>% 
+  mutate(thoracic_diameter = round(thoracic_diameter, 2),
+         abdominal_diameter = round(abdominal_diameter, 2))
+
+# alternative way to do it
+df %>% 
+  mutate(across(contains("diameter"), \(x) round(x, 2)))
+```
+
+## E7
+
+```{r}
+df2 <- df %>% select(-thoracic_diameter, -abdominal_diameter)
+df2
+df %>% select(-c(2:3))
+df %>% select(-contains("diameter"))
+```
+
+## E8
+
+```{r}
+df2 %>% filter(artheriosclerosis != 1)
+```
+
+# Medium Tasks
+
+## M1
+
+```{r}
+df %>% 
+  filter(diagnosis == "AAA") %>% 
+  slice_min(abdominal_diameter)
+```
+
+## M2
+
+```{r}
+df %>% 
+  summarise(mean = mean(abdominal_diameter))
+```
+
+## M3
+
+```{r}
+df %>% 
+  group_by(diagnosis) %>% 
+  summarise(mean = mean(abdominal_diameter))
+```
+
+```{r}
+df %>% 
+  filter(age > 60) %>% 
+  group_by(diagnosis) %>% 
+  summarise(mean = mean(abdominal_diameter))
+```
+
+## M4
+
+```{r}
+df %>% 
+  group_by(diagnosis) %>% 
+  summarise(median = median(thoracic_diameter))
+df %>% 
+  filter(age > 60) %>% 
+  group_by(diagnosis) %>% 
+  summarise(median = median(thoracic_diameter))
+```
+
+## M5
+
+```{r}
+df %>% 
+  summarise(median = median(bmi),
+            q1 = quantile(bmi, 0.25),
+            q3 = quantile(bmi, 0.75))
+df %>% 
+  group_by(diagnosis) %>% 
+  summarise(median = median(bmi),
+            q1 = quantile(bmi, 0.25),
+            q3 = quantile(bmi, 0.75),
+            IQR = IQR(bmi))
+```
+
+## Hard tasks
+
+```{r}library(tidyverse)}
+
+counts <- read_tsv(here::here("data/expression_data/counts.txt"))
+annotation <- read_tsv(here::here("data/expression_data/annotation.txt"))
+
+
+counts_long <- counts %>% pivot_longer( # take the data and pivot longer
+  cols = -gene, # select the columns to pivot longer, here everything but the gene column (similar to select)
+  names_to = "sample", # put the column names into a new column called sample
+  values_to = "count" # put the corresponding values ion a new column called count
+)
+anno_filtered <- annotation %>% 
+  select(Run, dex, cell)
+
+df_long <- counts_long %>% 
+  inner_join(anno_filtered, # join in the filtered annotation
+             by = join_by(sample == Run))
+```

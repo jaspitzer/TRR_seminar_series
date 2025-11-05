@@ -1,0 +1,42 @@
+---
+title: "solutions"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+words <- c("This", "is", "so", "grat")
+length(words)
+class(words)
+```
+
+```{r}
+df <- read_tsv("data/aneurysm_survey/example_data.txt")
+```
+
+```{r}
+colnames(df)
+```
+
+```{r}
+df <- mutate(df, pat = paste("pat", 1:900, sep = "_"))
+```
+
+```{r}
+df %>% slice_max(age, n = 1)
+df %>% slice_min(thoracic_diameter, n = 1)
+df2 <- df %>% slice_min(thoracic_diameter, n = 1)
+df2$hypertension
+```
+
+```{r}
+df %>% filter(thoracic_diameter > 3.5)
+```
+
+```{r}
+
+```

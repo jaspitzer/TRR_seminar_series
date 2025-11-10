@@ -21,7 +21,7 @@ class(words)
 ## E3 (2)
 
 ```{r}
-df <- read_tsv("data/aneurysm_survey/example_data.txt")
+df <- read_tsv(here::here("data/aneurysm_survey/example_data.txt"))
 ```
 
 ```{r}

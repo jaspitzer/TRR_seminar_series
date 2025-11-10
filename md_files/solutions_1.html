@@ -1,0 +1,2465 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>solutions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="solutions_1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="solutions_1_files/libs/quarto-html/quarto.js"></script>
+<script src="solutions_1_files/libs/quarto-html/popper.min.js"></script>
+<script src="solutions_1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="solutions_1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="solutions_1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="solutions_1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="solutions_1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="solutions_1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="solutions_1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">solutions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.2
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<section id="easy-tasks" class="level1">
+<h1>Easy Tasks</h1>
+<section id="e1-e2-e3" class="level2">
+<h2 class="anchored" data-anchor-id="e1-e2-e3">E1, E2, E3</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"This"</span>, <span class="st">"is"</span>, <span class="st">"so"</span>, <span class="st">"grat"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(words)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+</section>
+<section id="e3-2" class="level2">
+<h2 class="anchored" data-anchor-id="e3-2">E3 (2)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/aneurysm_survey/example_data.txt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 900 Columns: 9
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (1): diagnosis
+dbl (8): abdominal_diameter, thoracic_diameter, age, male, hypertension, cad...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 900   9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "diagnosis"          "abdominal_diameter" "thoracic_diameter" 
+[4] "age"                "male"               "hypertension"      
+[7] "cad"                "artheriosclerosis"  "bmi"               </code></pre>
+</div>
+</div>
+</section>
+<section id="e4" class="level2">
+<h2 class="anchored" data-anchor-id="e4">E4</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(df, <span class="at">pat =</span> <span class="fu">paste</span>(<span class="st">"pat"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">900</span>, <span class="at">sep =</span> <span class="st">"_"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">slice_max</span>(age, <span class="at">n =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 10
+  diagnosis abdominal_diameter thoracic_diameter   age  male hypertension   cad
+  &lt;chr&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+1 CTRL                    1.96              1.94    80     1            1     0
+2 CTRL                    1.80              2.15    80     0            0     0
+3 AAA                     3.90              2.00    80     1            1     0
+4 AAA                     4.13              2.07    80     1            1     0
+5 AAA                     2.96              1.77    80     1            0     0
+6 AAA                     4.32              1.96    80     1            0     0
+7 AAA                     3.20              1.99    80     1            1     0
+8 TAA                     2.05              4.35    80     1            1     0
+9 TAA                     2.12              3.50    80     1            0     0
+# ℹ 3 more variables: artheriosclerosis &lt;dbl&gt;, bmi &lt;dbl&gt;, pat &lt;chr&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">slice_min</span>(thoracic_diameter, <span class="at">n =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 10
+  diagnosis abdominal_diameter thoracic_diameter   age  male hypertension   cad
+  &lt;chr&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+1 CTRL                    1.75              1.43    69     0            0     0
+# ℹ 3 more variables: artheriosclerosis &lt;dbl&gt;, bmi &lt;dbl&gt;, pat &lt;chr&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">slice_min</span>(thoracic_diameter, <span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df2<span class="sc">$</span>hypertension</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+</section>
+<section id="e5" class="level2">
+<h2 class="anchored" data-anchor-id="e5">E5</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(thoracic_diameter <span class="sc">&gt;</span> <span class="fl">3.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 285 × 10
+   diagnosis abdominal_diameter thoracic_diameter   age  male hypertension   cad
+   &lt;chr&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+ 1 TAA                     1.74              4.16    61     1            1     0
+ 2 TAA                     1.85              4.03    57     0            0     1
+ 3 TAA                     2.09              4.07    54     1            1     0
+ 4 TAA                     1.86              4.27    55     1            1     0
+ 5 TAA                     2.05              3.67    65     0            0     0
+ 6 TAA                     2.02              4.39    49     1            0     0
+ 7 TAA                     1.97              3.72    73     1            0     0
+ 8 TAA                     1.94              3.69    75     1            1     0
+ 9 TAA                     1.84              4.41    72     1            0     0
+10 TAA                     2.28              4.06    60     0            0     0
+# ℹ 275 more rows
+# ℹ 3 more variables: artheriosclerosis &lt;dbl&gt;, bmi &lt;dbl&gt;, pat &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="e-6" class="level2">
+<h2 class="anchored" data-anchor-id="e-6">E 6</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">thoracic_diameter =</span> <span class="fu">round</span>(thoracic_diameter, <span class="dv">2</span>),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">abdominal_diameter =</span> <span class="fu">round</span>(abdominal_diameter, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 900 × 10
+   diagnosis abdominal_diameter thoracic_diameter   age  male hypertension   cad
+   &lt;chr&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+ 1 CTRL                    1.9               1.92    64     0            0     0
+ 2 CTRL                    2.05              2.03    49     1            0     0
+ 3 CTRL                    1.78              1.87    55     0            0     0
+ 4 CTRL                    1.8               1.64    52     1            0     1
+ 5 CTRL                    1.95              1.59    52     1            1     0
+ 6 CTRL                    2.08              2.12    69     1            0     0
+ 7 CTRL                    1.78              1.67    74     1            1     0
+ 8 CTRL                    2.14              2.05    47     0            1     0
+ 9 CTRL                    1.98              1.76    52     0            0     0
+10 CTRL                    2.08              2.25    76     0            0     0
+# ℹ 890 more rows
+# ℹ 3 more variables: artheriosclerosis &lt;dbl&gt;, bmi &lt;dbl&gt;, pat &lt;chr&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative way to do it</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">contains</span>(<span class="st">"diameter"</span>), \(x) <span class="fu">round</span>(x, <span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 900 × 10
+   diagnosis abdominal_diameter thoracic_diameter   age  male hypertension   cad
+   &lt;chr&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+ 1 CTRL                    1.9               1.92    64     0            0     0
+ 2 CTRL                    2.05              2.03    49     1            0     0
+ 3 CTRL                    1.78              1.87    55     0            0     0
+ 4 CTRL                    1.8               1.64    52     1            0     1
+ 5 CTRL                    1.95              1.59    52     1            1     0
+ 6 CTRL                    2.08              2.12    69     1            0     0
+ 7 CTRL                    1.78              1.67    74     1            1     0
+ 8 CTRL                    2.14              2.05    47     0            1     0
+ 9 CTRL                    1.98              1.76    52     0            0     0
+10 CTRL                    2.08              2.25    76     0            0     0
+# ℹ 890 more rows
+# ℹ 3 more variables: artheriosclerosis &lt;dbl&gt;, bmi &lt;dbl&gt;, pat &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="e7" class="level2">
+<h2 class="anchored" data-anchor-id="e7">E7</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>thoracic_diameter, <span class="sc">-</span>abdominal_diameter)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 900 × 8
+   diagnosis   age  male hypertension   cad artheriosclerosis   bmi pat   
+   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+ 1 CTRL         64     0            0     0                 0  25.2 pat_1 
+ 2 CTRL         49     1            0     0                 1  23.0 pat_2 
+ 3 CTRL         55     0            0     0                 1  23.3 pat_3 
+ 4 CTRL         52     1            0     1                 0  22.3 pat_4 
+ 5 CTRL         52     1            1     0                 0  23.1 pat_5 
+ 6 CTRL         69     1            0     0                 1  23.6 pat_6 
+ 7 CTRL         74     1            1     0                 0  24.2 pat_7 
+ 8 CTRL         47     0            1     0                 1  22.8 pat_8 
+ 9 CTRL         52     0            0     0                 1  22.8 pat_9 
+10 CTRL         76     0            0     0                 1  27.7 pat_10
+# ℹ 890 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 900 × 8
+   diagnosis   age  male hypertension   cad artheriosclerosis   bmi pat   
+   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+ 1 CTRL         64     0            0     0                 0  25.2 pat_1 
+ 2 CTRL         49     1            0     0                 1  23.0 pat_2 
+ 3 CTRL         55     0            0     0                 1  23.3 pat_3 
+ 4 CTRL         52     1            0     1                 0  22.3 pat_4 
+ 5 CTRL         52     1            1     0                 0  23.1 pat_5 
+ 6 CTRL         69     1            0     0                 1  23.6 pat_6 
+ 7 CTRL         74     1            1     0                 0  24.2 pat_7 
+ 8 CTRL         47     0            1     0                 1  22.8 pat_8 
+ 9 CTRL         52     0            0     0                 1  22.8 pat_9 
+10 CTRL         76     0            0     0                 1  27.7 pat_10
+# ℹ 890 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">contains</span>(<span class="st">"diameter"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 900 × 8
+   diagnosis   age  male hypertension   cad artheriosclerosis   bmi pat   
+   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+ 1 CTRL         64     0            0     0                 0  25.2 pat_1 
+ 2 CTRL         49     1            0     0                 1  23.0 pat_2 
+ 3 CTRL         55     0            0     0                 1  23.3 pat_3 
+ 4 CTRL         52     1            0     1                 0  22.3 pat_4 
+ 5 CTRL         52     1            1     0                 0  23.1 pat_5 
+ 6 CTRL         69     1            0     0                 1  23.6 pat_6 
+ 7 CTRL         74     1            1     0                 0  24.2 pat_7 
+ 8 CTRL         47     0            1     0                 1  22.8 pat_8 
+ 9 CTRL         52     0            0     0                 1  22.8 pat_9 
+10 CTRL         76     0            0     0                 1  27.7 pat_10
+# ℹ 890 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="e8" class="level2">
+<h2 class="anchored" data-anchor-id="e8">E8</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(artheriosclerosis <span class="sc">!=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 540 × 8
+   diagnosis   age  male hypertension   cad artheriosclerosis   bmi pat   
+   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+ 1 CTRL         64     0            0     0                 0  25.2 pat_1 
+ 2 CTRL         52     1            0     1                 0  22.3 pat_4 
+ 3 CTRL         52     1            1     0                 0  23.1 pat_5 
+ 4 CTRL         74     1            1     0                 0  24.2 pat_7 
+ 5 CTRL         71     1            0     0                 0  22.9 pat_12
+ 6 CTRL         46     1            0     0                 0  21.7 pat_14
+ 7 CTRL         60     0            0     0                 0  25.7 pat_15
+ 8 CTRL         76     0            0     1                 0  24.9 pat_16
+ 9 CTRL         72     1            1     0                 0  25.9 pat_18
+10 CTRL         59     1            0     0                 0  25.9 pat_19
+# ℹ 530 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="medium-tasks" class="level1">
+<h1>Medium Tasks</h1>
+<section id="m1" class="level2">
+<h2 class="anchored" data-anchor-id="m1">M1</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(diagnosis <span class="sc">==</span> <span class="st">"AAA"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(abdominal_diameter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 10
+  diagnosis abdominal_diameter thoracic_diameter   age  male hypertension   cad
+  &lt;chr&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+1 AAA                     2.33              1.96    64     1            1     1
+# ℹ 3 more variables: artheriosclerosis &lt;dbl&gt;, bmi &lt;dbl&gt;, pat &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="m2" class="level2">
+<h2 class="anchored" data-anchor-id="m2">M2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(abdominal_diameter))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+   mean
+  &lt;dbl&gt;
+1  2.66</code></pre>
+</div>
+</div>
+</section>
+<section id="m3" class="level2">
+<h2 class="anchored" data-anchor-id="m3">M3</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(diagnosis) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(abdominal_diameter))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  diagnosis  mean
+  &lt;chr&gt;     &lt;dbl&gt;
+1 AAA        4.01
+2 CTRL       2.00
+3 TAA        1.98</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(diagnosis) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(abdominal_diameter))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  diagnosis  mean
+  &lt;chr&gt;     &lt;dbl&gt;
+1 AAA        4.00
+2 CTRL       1.98
+3 TAA        1.97</code></pre>
+</div>
+</div>
+</section>
+<section id="m4" class="level2">
+<h2 class="anchored" data-anchor-id="m4">M4</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(diagnosis) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">median</span>(thoracic_diameter))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  diagnosis median
+  &lt;chr&gt;      &lt;dbl&gt;
+1 AAA         2.02
+2 CTRL        2.00
+3 TAA         4.02</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(diagnosis) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">median</span>(thoracic_diameter))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  diagnosis median
+  &lt;chr&gt;      &lt;dbl&gt;
+1 AAA         2.01
+2 CTRL        2.02
+3 TAA         4.01</code></pre>
+</div>
+</div>
+</section>
+<section id="m5" class="level2">
+<h2 class="anchored" data-anchor-id="m5">M5</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">median</span>(bmi),</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">q1 =</span> <span class="fu">quantile</span>(bmi, <span class="fl">0.25</span>),</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">q3 =</span> <span class="fu">quantile</span>(bmi, <span class="fl">0.75</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  median    q1    q3
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1   24.1  22.4  26.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(diagnosis) <span class="sc">%&gt;%</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">median</span>(bmi),</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">q1 =</span> <span class="fu">quantile</span>(bmi, <span class="fl">0.25</span>),</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">q3 =</span> <span class="fu">quantile</span>(bmi, <span class="fl">0.75</span>),</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">IQR =</span> <span class="fu">IQR</span>(bmi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  diagnosis median    q1    q3   IQR
+  &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 AAA         27.7  23.4  31.3  7.94
+2 CTRL        24.0  22.6  25.5  2.85
+3 TAA         23.1  21.9  24.5  2.59</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="hard-tasks" class="level1">
+<h1>Hard tasks</h1>
+<section id="h1" class="level2">
+<h2 class="anchored" data-anchor-id="h1">H1</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/expression_data/counts.txt"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 53563 Columns: 9
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (1): gene
+dbl (8): SRR1039508, SRR1039509, SRR1039512, SRR1039513, SRR1039516, SRR1039...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>annotation <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/expression_data/annotation.txt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 8 Columns: 9
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (8): SampleName, cell, dex, albut, Run, Experiment, Sample, BioSample
+dbl (1): avgLength
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>counts_long <span class="ot">&lt;-</span> counts <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>( <span class="co"># take the data and pivot longer </span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="sc">-</span>gene, <span class="co"># select the columns to pivot longer, here everything but the gene column (similar to select) </span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">"sample"</span>, <span class="co"># put the column names into a new column called sample </span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">"count"</span>) <span class="co"># put the corresponding values ion a new column called count ) </span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>anno_filtered <span class="ot">&lt;-</span> annotation <span class="sc">%&gt;%</span> <span class="fu">select</span>(Run, dex, cell)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> counts_long <span class="sc">%&gt;%</span> <span class="fu">inner_join</span>(anno_filtered, <span class="co"># join in the filtered annotation </span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>                                      <span class="at">by =</span> <span class="fu">join_by</span>(sample <span class="sc">==</span> Run))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="h2" class="level2">
+<h2 class="anchored" data-anchor-id="h2">H2</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="sc">%&gt;%</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter on gene of interest</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gene <span class="sc">==</span> <span class="st">"IL8"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># summary calculation</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_expr =</span> <span class="fu">mean</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_expr
+      &lt;dbl&gt;
+1      13.5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="sc">%&gt;%</span> </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter on gene of interest</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gene <span class="sc">==</span> <span class="st">"IL8"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#group by gene and treatment</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, dex) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># summary calculation</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_expr =</span> <span class="fu">mean</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'gene'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+# Groups:   gene [1]
+  gene  dex   mean_expr
+  &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
+1 IL8   trt        11.2
+2 IL8   untrt      15.8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="sc">%&gt;%</span> </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter on gene of interest</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gene <span class="sc">==</span> <span class="st">"IL8"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#group by gene, treatment and cell</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, dex, cell) <span class="sc">%&gt;%</span> </span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># summary calculation</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_expr =</span> <span class="fu">mean</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'gene', 'dex'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 4
+# Groups:   gene, dex [2]
+  gene  dex   cell    mean_expr
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+1 IL8   trt   N052611        15
+2 IL8   trt   N061011         3
+3 IL8   trt   N080611        22
+4 IL8   trt   N61311          5
+5 IL8   untrt N052611        29
+6 IL8   untrt N061011         3
+7 IL8   untrt N080611        28
+8 IL8   untrt N61311          3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="sc">%&gt;%</span> </span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter on gene of interest</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gene <span class="sc">==</span> <span class="st">"IL8"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get the highest count</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  gene  sample     count dex   cell   
+  &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  
+1 IL8   SRR1039512    29 untrt N052611</code></pre>
+</div>
+</div>
+</section>
+<section id="h2a" class="level2">
+<h2 class="anchored" data-anchor-id="h2a">H2a</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="sc">%&gt;%</span> </span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gene <span class="sc">==</span> <span class="st">"IL8"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># replace existing gene column with new one</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> <span class="fu">str_replace</span>(gene, <span class="st">"IL8"</span>, <span class="st">"CXCL8"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># repeat summary calculation, adding gene here to include it in the table</span></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, dex) <span class="sc">%&gt;%</span> </span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_expr =</span> <span class="fu">mean</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'gene'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+# Groups:   gene [1]
+  gene  dex   mean_expr
+  &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;
+1 CXCL8 trt        11.2
+2 CXCL8 untrt      15.8</code></pre>
+</div>
+</div>
+</section>
+<section id="h3" class="level2">
+<h2 class="anchored" data-anchor-id="h3">H3</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/aneurysm_survey/example_data.txt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 900 Columns: 9
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: "\t"
+chr (1): diagnosis
+dbl (8): abdominal_diameter, thoracic_diameter, age, male, hypertension, cad...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="zhfskzhpcw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zhfskzhpcw table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zhfskzhpcw thead, #zhfskzhpcw tbody, #zhfskzhpcw tfoot, #zhfskzhpcw tr, #zhfskzhpcw td, #zhfskzhpcw th {
+  border-style: none;
+}
+
+#zhfskzhpcw p {
+  margin: 0;
+  padding: 0;
+}
+
+#zhfskzhpcw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zhfskzhpcw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zhfskzhpcw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zhfskzhpcw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zhfskzhpcw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zhfskzhpcw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zhfskzhpcw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zhfskzhpcw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zhfskzhpcw .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zhfskzhpcw .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zhfskzhpcw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zhfskzhpcw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zhfskzhpcw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zhfskzhpcw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zhfskzhpcw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zhfskzhpcw .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zhfskzhpcw .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zhfskzhpcw .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zhfskzhpcw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zhfskzhpcw .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zhfskzhpcw .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zhfskzhpcw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zhfskzhpcw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zhfskzhpcw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zhfskzhpcw .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zhfskzhpcw .gt_left {
+  text-align: left;
+}
+
+#zhfskzhpcw .gt_center {
+  text-align: center;
+}
+
+#zhfskzhpcw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zhfskzhpcw .gt_font_normal {
+  font-weight: normal;
+}
+
+#zhfskzhpcw .gt_font_bold {
+  font-weight: bold;
+}
+
+#zhfskzhpcw .gt_font_italic {
+  font-style: italic;
+}
+
+#zhfskzhpcw .gt_super {
+  font-size: 65%;
+}
+
+#zhfskzhpcw .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zhfskzhpcw .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zhfskzhpcw .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zhfskzhpcw .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zhfskzhpcw .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zhfskzhpcw .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zhfskzhpcw .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#zhfskzhpcw .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#zhfskzhpcw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span data-qmd-base64="KipDaGFyYWN0ZXJpc3RpYyoq"><span class="gt_from_md"><strong>Characteristic</strong></span></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_0"><span data-qmd-base64="KipOID0gOTAwKio="><span class="gt_from_md"><strong>N = 900</strong></span></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">diagnosis</td>
+<td headers="stat_0" class="gt_row gt_center"><br></td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;AAA</td>
+<td headers="stat_0" class="gt_row gt_center">300 (33%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;CTRL</td>
+<td headers="stat_0" class="gt_row gt_center">300 (33%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">&nbsp;&nbsp;&nbsp;&nbsp;TAA</td>
+<td headers="stat_0" class="gt_row gt_center">300 (33%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">abdominal_diameter</td>
+<td headers="stat_0" class="gt_row gt_center">2.11 (1.94, 3.44)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">thoracic_diameter</td>
+<td headers="stat_0" class="gt_row gt_center">2.10 (1.96, 3.79)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">age</td>
+<td headers="stat_0" class="gt_row gt_center">62 (53, 71)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">male</td>
+<td headers="stat_0" class="gt_row gt_center">608 (68%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">hypertension</td>
+<td headers="stat_0" class="gt_row gt_center">346 (38%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">cad</td>
+<td headers="stat_0" class="gt_row gt_center">109 (12%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">artheriosclerosis</td>
+<td headers="stat_0" class="gt_row gt_center">360 (40%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">bmi</td>
+<td headers="stat_0" class="gt_row gt_center">24.1 (22.4, 26.4)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span data-qmd-base64="biAoJSk7IE1lZGlhbiAoUTEsIFEzKQ=="><span class="gt_from_md">n (%); Median (Q1, Q3)</span></span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="h4" class="level2">
+<h2 class="anchored" data-anchor-id="h4">H4</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> diagnosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="gtbzmcnehi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gtbzmcnehi table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#gtbzmcnehi thead, #gtbzmcnehi tbody, #gtbzmcnehi tfoot, #gtbzmcnehi tr, #gtbzmcnehi td, #gtbzmcnehi th {
+  border-style: none;
+}
+
+#gtbzmcnehi p {
+  margin: 0;
+  padding: 0;
+}
+
+#gtbzmcnehi .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#gtbzmcnehi .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gtbzmcnehi .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gtbzmcnehi .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gtbzmcnehi .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gtbzmcnehi .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gtbzmcnehi .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gtbzmcnehi .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gtbzmcnehi .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#gtbzmcnehi .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#gtbzmcnehi .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gtbzmcnehi .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gtbzmcnehi .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gtbzmcnehi .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gtbzmcnehi .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gtbzmcnehi .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gtbzmcnehi .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gtbzmcnehi .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#gtbzmcnehi .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gtbzmcnehi .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gtbzmcnehi .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gtbzmcnehi .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gtbzmcnehi .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gtbzmcnehi .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gtbzmcnehi .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gtbzmcnehi .gt_left {
+  text-align: left;
+}
+
+#gtbzmcnehi .gt_center {
+  text-align: center;
+}
+
+#gtbzmcnehi .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gtbzmcnehi .gt_font_normal {
+  font-weight: normal;
+}
+
+#gtbzmcnehi .gt_font_bold {
+  font-weight: bold;
+}
+
+#gtbzmcnehi .gt_font_italic {
+  font-style: italic;
+}
+
+#gtbzmcnehi .gt_super {
+  font-size: 65%;
+}
+
+#gtbzmcnehi .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#gtbzmcnehi .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gtbzmcnehi .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gtbzmcnehi .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gtbzmcnehi .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gtbzmcnehi .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gtbzmcnehi .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#gtbzmcnehi .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#gtbzmcnehi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span data-qmd-base64="KipDaGFyYWN0ZXJpc3RpYyoq"><span class="gt_from_md"><strong>Characteristic</strong></span></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span data-qmd-base64="KipBQUEqKiAgCk4gPSAzMDA="><span class="gt_from_md"><strong>AAA</strong><br>
+N = 300</span></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span data-qmd-base64="KipDVFJMKiogIApOID0gMzAw"><span class="gt_from_md"><strong>CTRL</strong><br>
+N = 300</span></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span data-qmd-base64="KipUQUEqKiAgCk4gPSAzMDA="><span class="gt_from_md"><strong>TAA</strong><br>
+N = 300</span></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">abdominal_diameter</td>
+<td headers="stat_1" class="gt_row gt_center">3.95 (3.44, 4.59)</td>
+<td headers="stat_2" class="gt_row gt_center">2.00 (1.88, 2.11)</td>
+<td headers="stat_3" class="gt_row gt_center">1.98 (1.83, 2.11)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">thoracic_diameter</td>
+<td headers="stat_1" class="gt_row gt_center">2.02 (1.94, 2.09)</td>
+<td headers="stat_2" class="gt_row gt_center">2.00 (1.84, 2.12)</td>
+<td headers="stat_3" class="gt_row gt_center">4.02 (3.79, 4.18)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">age</td>
+<td headers="stat_1" class="gt_row gt_center">62 (53, 71)</td>
+<td headers="stat_2" class="gt_row gt_center">62 (52, 71)</td>
+<td headers="stat_3" class="gt_row gt_center">62 (54, 71)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">male</td>
+<td headers="stat_1" class="gt_row gt_center">229 (76%)</td>
+<td headers="stat_2" class="gt_row gt_center">148 (49%)</td>
+<td headers="stat_3" class="gt_row gt_center">231 (77%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">hypertension</td>
+<td headers="stat_1" class="gt_row gt_center">150 (50%)</td>
+<td headers="stat_2" class="gt_row gt_center">67 (22%)</td>
+<td headers="stat_3" class="gt_row gt_center">129 (43%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">cad</td>
+<td headers="stat_1" class="gt_row gt_center">53 (18%)</td>
+<td headers="stat_2" class="gt_row gt_center">25 (8.3%)</td>
+<td headers="stat_3" class="gt_row gt_center">31 (10%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">artheriosclerosis</td>
+<td headers="stat_1" class="gt_row gt_center">91 (30%)</td>
+<td headers="stat_2" class="gt_row gt_center">157 (52%)</td>
+<td headers="stat_3" class="gt_row gt_center">112 (37%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">bmi</td>
+<td headers="stat_1" class="gt_row gt_center">27.7 (23.4, 31.4)</td>
+<td headers="stat_2" class="gt_row gt_center">24.0 (22.6, 25.5)</td>
+<td headers="stat_3" class="gt_row gt_center">23.1 (21.9, 24.5)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span data-qmd-base64="TWVkaWFuIChRMSwgUTMpOyBuICglKQ=="><span class="gt_from_md">Median (Q1, Q3); n (%)</span></span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="h5" class="level2">
+<h2 class="anchored" data-anchor-id="h5">H5</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(bmi <span class="sc">&gt;</span> <span class="dv">22</span>, age <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">by =</span> diagnosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div id="zzucuxiohg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zzucuxiohg table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zzucuxiohg thead, #zzucuxiohg tbody, #zzucuxiohg tfoot, #zzucuxiohg tr, #zzucuxiohg td, #zzucuxiohg th {
+  border-style: none;
+}
+
+#zzucuxiohg p {
+  margin: 0;
+  padding: 0;
+}
+
+#zzucuxiohg .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zzucuxiohg .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zzucuxiohg .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zzucuxiohg .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zzucuxiohg .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zzucuxiohg .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zzucuxiohg .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zzucuxiohg .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zzucuxiohg .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zzucuxiohg .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zzucuxiohg .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zzucuxiohg .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zzucuxiohg .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zzucuxiohg .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zzucuxiohg .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzucuxiohg .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zzucuxiohg .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zzucuxiohg .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zzucuxiohg .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzucuxiohg .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zzucuxiohg .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzucuxiohg .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zzucuxiohg .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzucuxiohg .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zzucuxiohg .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzucuxiohg .gt_left {
+  text-align: left;
+}
+
+#zzucuxiohg .gt_center {
+  text-align: center;
+}
+
+#zzucuxiohg .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zzucuxiohg .gt_font_normal {
+  font-weight: normal;
+}
+
+#zzucuxiohg .gt_font_bold {
+  font-weight: bold;
+}
+
+#zzucuxiohg .gt_font_italic {
+  font-style: italic;
+}
+
+#zzucuxiohg .gt_super {
+  font-size: 65%;
+}
+
+#zzucuxiohg .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zzucuxiohg .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zzucuxiohg .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zzucuxiohg .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zzucuxiohg .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zzucuxiohg .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zzucuxiohg .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#zzucuxiohg .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#zzucuxiohg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span data-qmd-base64="KipDaGFyYWN0ZXJpc3RpYyoq"><span class="gt_from_md"><strong>Characteristic</strong></span></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1"><span data-qmd-base64="KipBQUEqKiAgCk4gPSAyMDc="><span class="gt_from_md"><strong>AAA</strong><br>
+N = 207</span></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2"><span data-qmd-base64="KipDVFJMKiogIApOID0gMjEy"><span class="gt_from_md"><strong>CTRL</strong><br>
+N = 212</span></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_3"><span data-qmd-base64="KipUQUEqKiAgCk4gPSAxODE="><span class="gt_from_md"><strong>TAA</strong><br>
+N = 181</span></span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">abdominal_diameter</td>
+<td headers="stat_1" class="gt_row gt_center">4.04 (3.45, 4.58)</td>
+<td headers="stat_2" class="gt_row gt_center">2.00 (1.91, 2.11)</td>
+<td headers="stat_3" class="gt_row gt_center">1.99 (1.83, 2.12)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">thoracic_diameter</td>
+<td headers="stat_1" class="gt_row gt_center">2.00 (1.94, 2.08)</td>
+<td headers="stat_2" class="gt_row gt_center">2.00 (1.83, 2.12)</td>
+<td headers="stat_3" class="gt_row gt_center">4.02 (3.80, 4.22)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">age</td>
+<td headers="stat_1" class="gt_row gt_center">65 (58, 72)</td>
+<td headers="stat_2" class="gt_row gt_center">66 (57, 72)</td>
+<td headers="stat_3" class="gt_row gt_center">65 (58, 72)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">male</td>
+<td headers="stat_1" class="gt_row gt_center">153 (74%)</td>
+<td headers="stat_2" class="gt_row gt_center">98 (46%)</td>
+<td headers="stat_3" class="gt_row gt_center">141 (78%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">hypertension</td>
+<td headers="stat_1" class="gt_row gt_center">105 (51%)</td>
+<td headers="stat_2" class="gt_row gt_center">47 (22%)</td>
+<td headers="stat_3" class="gt_row gt_center">74 (41%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">cad</td>
+<td headers="stat_1" class="gt_row gt_center">36 (17%)</td>
+<td headers="stat_2" class="gt_row gt_center">19 (9.0%)</td>
+<td headers="stat_3" class="gt_row gt_center">19 (10%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">artheriosclerosis</td>
+<td headers="stat_1" class="gt_row gt_center">62 (30%)</td>
+<td headers="stat_2" class="gt_row gt_center">113 (53%)</td>
+<td headers="stat_3" class="gt_row gt_center">72 (40%)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">bmi</td>
+<td headers="stat_1" class="gt_row gt_center">28.7 (25.4, 32.0)</td>
+<td headers="stat_2" class="gt_row gt_center">24.3 (23.1, 25.6)</td>
+<td headers="stat_3" class="gt_row gt_center">24.0 (23.0, 24.9)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="4"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span data-qmd-base64="TWVkaWFuIChRMSwgUTMpOyBuICglKQ=="><span class="gt_from_md">Median (Q1, Q3); n (%)</span></span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="h6" class="level2">
+<h2 class="anchored" data-anchor-id="h6">H6</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hypertension =</span> <span class="fu">ifelse</span>(hypertension <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"present"</span>, <span class="st">"absent"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 900 × 9
+   diagnosis abdominal_diameter thoracic_diameter   age  male hypertension   cad
+   &lt;chr&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;
+ 1 CTRL                    1.90              1.92    64     0 absent           0
+ 2 CTRL                    2.05              2.03    49     1 absent           0
+ 3 CTRL                    1.78              1.87    55     0 absent           0
+ 4 CTRL                    1.80              1.64    52     1 absent           1
+ 5 CTRL                    1.95              1.59    52     1 present          0
+ 6 CTRL                    2.08              2.12    69     1 absent           0
+ 7 CTRL                    1.78              1.67    74     1 present          0
+ 8 CTRL                    2.14              2.05    47     0 present          0
+ 9 CTRL                    1.98              1.76    52     0 absent           0
+10 CTRL                    2.08              2.25    76     0 absent           0
+# ℹ 890 more rows
+# ℹ 2 more variables: artheriosclerosis &lt;dbl&gt;, bmi &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="h7" class="level2">
+<h2 class="anchored" data-anchor-id="h7">H7</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># using across</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>      <span class="co"># selecting all columns containning "diameter"</span></span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">contains</span>(<span class="st">"diameter"</span>), </span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>      <span class="co"># applying the round function to every column selected before</span></span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>      round</span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 900 × 9
+   diagnosis abdominal_diameter thoracic_diameter   age  male hypertension   cad
+   &lt;chr&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+ 1 CTRL                       2                 2    64     0            0     0
+ 2 CTRL                       2                 2    49     1            0     0
+ 3 CTRL                       2                 2    55     0            0     0
+ 4 CTRL                       2                 2    52     1            0     1
+ 5 CTRL                       2                 2    52     1            1     0
+ 6 CTRL                       2                 2    69     1            0     0
+ 7 CTRL                       2                 2    74     1            1     0
+ 8 CTRL                       2                 2    47     0            1     0
+ 9 CTRL                       2                 2    52     0            0     0
+10 CTRL                       2                 2    76     0            0     0
+# ℹ 890 more rows
+# ℹ 2 more variables: artheriosclerosis &lt;dbl&gt;, bmi &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="h8" class="level2">
+<h2 class="anchored" data-anchor-id="h8">H8</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>      <span class="co"># selecting columns</span></span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>      hypertension<span class="sc">:</span>artheriosclerosis, </span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>      <span class="co"># decalring an anonymous function, taking "x" as input. using x, aplly the function to everything selected above</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>      \(x) <span class="fu">ifelse</span>(x <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"present"</span>, <span class="st">"absent"</span> )</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 900 × 9
+   diagnosis abdominal_diameter thoracic_diameter   age  male hypertension cad  
+   &lt;chr&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;
+ 1 CTRL                    1.90              1.92    64     0 absent       abse…
+ 2 CTRL                    2.05              2.03    49     1 absent       abse…
+ 3 CTRL                    1.78              1.87    55     0 absent       abse…
+ 4 CTRL                    1.80              1.64    52     1 absent       pres…
+ 5 CTRL                    1.95              1.59    52     1 present      abse…
+ 6 CTRL                    2.08              2.12    69     1 absent       abse…
+ 7 CTRL                    1.78              1.67    74     1 present      abse…
+ 8 CTRL                    2.14              2.05    47     0 present      abse…
+ 9 CTRL                    1.98              1.76    52     0 absent       abse…
+10 CTRL                    2.08              2.25    76     0 absent       abse…
+# ℹ 890 more rows
+# ℹ 2 more variables: artheriosclerosis &lt;chr&gt;, bmi &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

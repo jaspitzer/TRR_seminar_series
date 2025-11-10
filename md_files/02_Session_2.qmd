@@ -78,3 +78,114 @@ list.files(here(), include.dirs = T)
 In this case, there also is a "slides" folder, since this is the project for the seminar series.
 
 # ggplot2 and data visualisation
+
+The [ggplot2](https://ggplot2.tidyverse.org/) package is the most common way to create plots and figures within R and for good reason: extreme customisability allows for the exact visual representation you might want, a sprawling ecosystem of extensions and further packages like [ggrepel](https://ggrepel.slowkow.com/) or [ggtext](https://r-graph-gallery.com/package/ggtext.html) increase the possibilities even more.
+
+As always, we will start with some data. In this case, the same aneurysm data we have used in session 1:
+
+```{r}
+df <- read_tsv(here("data", "aneurysm_survey", "example_data.txt"))
+```
+
+```{r}
+df
+```
+
+## Example visualisations
+
+The plot below shows a three possible ways to visualise the data from the aneurysm survey. You should not understand what is happening right now, but see that the same data can be visualised in different way.
+
+```{r}
+#| fig-width: 12
+
+df_plot <- df %>% 
+  pivot_longer(contains("diameter"), names_to = "location", values_to = "diameter") %>% 
+  mutate(hypertension = ifelse(hypertension, "hypertension", "normal bp") %>% fct_relevel("normal bp")) %>% 
+  group_by(location, diagnosis, hypertension) %>% 
+  slice_sample(n = 5) %>% 
+  ungroup() %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL"),
+         location = str_remove(location, "_diameter") %>% fct_relevel("thoracic"))
+
+p1 <- df_plot %>% 
+  ggplot(aes(diagnosis, diameter, fill = location))+
+  stat_summary(geom = "bar", position = "dodge")+
+  stat_summary(geom = "errorbar", position = position_dodge(width = 0.9), width  = 0.5, alpha = 0.6)+
+  geom_point(position = position_dodge(width = 0.9)) +
+  labs(x = "Diagnosis", y = "Diameter [cm]", fill = "Position:",
+       title = "Aortic diameter by blood pressure")+
+  theme_light(base_size = 12)+
+  facet_wrap(~hypertension)+
+  scale_fill_manual(values = c("#E69F00","#009E73"))+
+  theme(legend.position = "bottom")
+
+
+
+p2 <- df_plot %>% 
+  ggplot(aes(diagnosis, diameter, fill = hypertension))+
+  geom_boxplot()+
+  facet_wrap(~location)+
+  scale_fill_manual(values = c("#0072B2","#CC79A7"))+ 
+  labs(x = "Diagnosis", y = "Diameter [cm]", fill = "Blood pressure:",
+       title = "Aortic diameters in two locations")+
+  theme_light(base_size = 12)+
+  theme(legend.position = "bottom")
+
+p3 <- df_plot %>% 
+  ggplot(aes(location, diameter, fill = hypertension))+
+  geom_violin()+
+  geom_point(position = position_dodge(width = 0.9))+
+  facet_wrap(~diagnosis)+
+  scale_fill_manual(values = c("#999999","#D55E00"))+ 
+  labs(x = "Diagnosis", y = "Diameter [cm]", fill = "Blood pressure:",
+       title = "Aortic diameters in two locations")+
+  theme_light(base_size = 12)+
+  theme(legend.position = "bottom")
+
+
+p1
+p2
+p3
+```
+
+```{r}
+
+df %>%  
+  group_by(diagnosis, hypertension) %>% 
+  slice_sample(n = 10) %>% 
+  mutate(hypertension = ifelse(hypertension, "hypertension", "normal bp") %>% fct_relevel("normal bp")) %>% 
+  ggplot(aes(abdominal_diameter, bmi))+
+  geom_point(size = 4, aes(color = diagnosis, shape = diagnosis))+
+  geom_smooth(method = "lm")+
+  theme_light()+
+  labs(x = "Abdominal Aortic Diameter", 
+       y = "BMI", 
+       color = "Diagnosis",
+       title = "Relationship between BMI and AAA")+
+  facet_wrap(~hypertension)
+```
+
+## Basics of data visualisation with ggplot
+
+We
+
+```{r}
+df
+df_sub <- df %>%  
+  group_by(diagnosis, hypertension) %>% 
+  slice_sample(n = 10)
+```
+
+data layer
+
+```{r}
+ggplot(data= df_sub)
+df_sub %>% ggplot()
+```
+
+Mapping Layer
+
+```{r}
+df_sub %>% ggplot(aes(x = abdominal_diameter,
+                      y = bmi))
+```

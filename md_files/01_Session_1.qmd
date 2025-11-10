@@ -448,7 +448,7 @@ df <- select(df, diagnosis, where(is.numeric))
 glimpse(df)
 ```
 
-### Interlude: the pipe %\>% or \|\> 
+### Interlude: the pipe %\>% or \|\>
 
 Writing code can fairly easily lead to a convoluted mess. The code below does a couple of things, none of which are particularly complicated. It filters the data frame on only AAA patients, adds a new variable using the diameter, then filters the data set based on the new variable as well as age.
 
@@ -908,9 +908,9 @@ M5: The median is oftentimes used in conjunction with the interquartile range (I
 
 H1: Refer back to the github and read in the expression data set. Merge them in the same fashion as above.
 
-H2: Consider the gene *CXCL8*. What is the mean expression in the data set? What is the mean expression per treatment? What is the mean expression by treatment and cell line? Which sample shows the highest expression of *CXCL8*?
+H2: Consider the gene *IL8*. What is the mean expression in the data set? What is the mean expression per treatment? What is the mean expression by treatment and cell line? Which sample shows the highest expression of *IL8*?
 
-H2a: *CXCL8* is the gene name coding for the protein IL8. For your table, you want to replace the gene name with the protein name. Hint: use `str_replace()` and `mutate()`
+H2a: *IL8*is the gene name coding for the protein CXCL8. For your table, you want to replace the gene name with the protein name. Hint: use `str_replace()` and `mutate()`
 
 H3: Generate an overview table of the aneurysm survey data using gtsummary.
 

@@ -134,23 +134,134 @@ df %>%
             IQR = IQR(bmi))
 ```
 
-## Hard tasks
+# Hard tasks
 
-```{r}library(tidyverse)}
+## H1
 
-counts <- read_tsv(here::here("data/expression_data/counts.txt"))
+```{r}
+library(tidyverse)
+
+counts <- read_tsv(here::here("data/expression_data/counts.txt")) 
 annotation <- read_tsv(here::here("data/expression_data/annotation.txt"))
 
+counts_long <- counts %>% pivot_longer( # take the data and pivot longer 
+  cols = -gene, # select the columns to pivot longer, here everything but the gene column (similar to select) 
+  names_to = "sample", # put the column names into a new column called sample 
+  values_to = "count") # put the corresponding values ion a new column called count ) 
 
-counts_long <- counts %>% pivot_longer( # take the data and pivot longer
-  cols = -gene, # select the columns to pivot longer, here everything but the gene column (similar to select)
-  names_to = "sample", # put the column names into a new column called sample
-  values_to = "count" # put the corresponding values ion a new column called count
-)
-anno_filtered <- annotation %>% 
-  select(Run, dex, cell)
+anno_filtered <- annotation %>% select(Run, dex, cell)
 
-df_long <- counts_long %>% 
-  inner_join(anno_filtered, # join in the filtered annotation
-             by = join_by(sample == Run))
+df_long <- counts_long %>% inner_join(anno_filtered, # join in the filtered annotation 
+                                      by = join_by(sample == Run))
+```
+
+## H2
+
+```{r}
+df_long %>% 
+  # filter on gene of interest
+  filter(gene == "IL8") %>% 
+  # summary calculation
+  summarise(mean_expr = mean(count))
+```
+
+```{r}
+
+df_long %>% 
+  # filter on gene of interest
+  filter(gene == "IL8") %>%
+  #group by gene and treatment
+  group_by(gene, dex) %>% 
+  # summary calculation
+  summarise(mean_expr = mean(count))
+
+df_long %>% 
+  # filter on gene of interest
+  filter(gene == "IL8") %>%
+  #group by gene, treatment and cell
+  group_by(gene, dex, cell) %>% 
+  # summary calculation
+  summarise(mean_expr = mean(count))
+
+df_long %>% 
+  # filter on gene of interest
+  filter(gene == "IL8") %>%
+  # get the highest count
+  slice_max(count)
+```
+
+## H2a
+
+```{r}
+df_long %>% 
+  filter(gene == "IL8") %>% 
+  # replace existing gene column with new one
+  mutate(gene = str_replace(gene, "IL8", "CXCL8")) %>% 
+  # repeat summary calculation, adding gene here to include it in the table
+  group_by(gene, dex) %>% 
+  summarise(mean_expr = mean(count))
+
+```
+
+## H3
+
+```{r}
+library(gtsummary)
+df <- read_tsv(here::here("data/aneurysm_survey/example_data.txt"))
+```
+
+```{r}
+df %>% 
+  tbl_summary()
+```
+
+## H4
+
+```{r}
+df %>% 
+  tbl_summary(by = diagnosis)
+```
+
+## H5
+
+```{r}
+df %>% 
+  filter(bmi > 22, age > 50) %>% 
+  tbl_summary(by = diagnosis)
+```
+
+## H6
+
+```{r}
+df %>% 
+  mutate(hypertension = ifelse(hypertension == 1, "present", "absent"))
+```
+
+## H7
+
+```{r}
+df %>% 
+  mutate(
+    # using across
+    across(
+      # selecting all columns containning "diameter"
+      contains("diameter"), 
+      # applying the round function to every column selected before
+      round
+      )
+    )
+```
+
+## H8
+
+```{r}
+df %>% 
+  mutate(
+    across(
+      # selecting columns
+      hypertension:artheriosclerosis, 
+      # decalring an anonymous function, taking "x" as input. using x, aplly the function to everything selected above
+      \(x) ifelse(x == 1, "present", "absent" )
+      )
+    )
 ```

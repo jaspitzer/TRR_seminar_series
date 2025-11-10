@@ -188,4 +188,63 @@ Mapping Layer
 ```{r}
 df_sub %>% ggplot(aes(x = abdominal_diameter,
                       y = bmi))
+
+df_sub %>% ggplot(aes(abdominal_diameter,
+                      bmi))
+```
+
+```{r}
+
+df_sub %>% ggplot(aes(abdominal_diameter,
+                      bmi))+
+  geom_point()
+
+
+df_sub %>% ggplot(aes(abdominal_diameter,
+                      bmi))+
+  geom_point()+
+  geom_smooth(method = "lm")
+```
+
+```{r}
+df_sub %>% 
+  ggplot(aes(abdominal_diameter,
+             bmi, color = diagnosis))+
+  geom_point()
+
+
+df_sub %>% 
+  ggplot(aes(abdominal_diameter,
+             bmi, color = diagnosis))+
+  geom_point()+
+  scale_color_viridis_d()
+
+df_sub %>% 
+  ggplot(aes(abdominal_diameter,
+             bmi, color = diagnosis))+
+  geom_point()+
+  scale_color_manual(values = c("red", "grey", "blue"))
+```
+
+```{r}
+
+df_sub %>% 
+  ggplot(aes(abdominal_diameter,
+             bmi, color = diagnosis))+
+  geom_point()+
+  scale_color_manual(values = c("red", "grey", "blue"))+
+  facet_wrap(~hypertension)
+```
+
+```{r}
+df_sub %>% 
+  ggplot(aes(abdominal_diameter,
+             bmi, color = diagnosis))+
+  geom_point()+
+  scale_color_manual(values = c("red", "grey", "blue"))+
+  theme(
+    legend.position = "bottom",
+    axis.line = element_line(linewidth = 0.75),
+    axis.line.x = element_line(color = "blue"),
+    axis.text.x = element_text(angle = 45, hjust = 1))
 ```

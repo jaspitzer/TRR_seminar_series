@@ -171,19 +171,21 @@ We
 
 ```{r}
 df
+set.seed(11112025)
 df_sub <- df %>%  
   group_by(diagnosis, hypertension) %>% 
-  slice_sample(n = 10)
+  slice_sample(n = 10) %>% 
+  ungroup()
 ```
 
-data layer
+### Data 
 
 ```{r}
 ggplot(data= df_sub)
 df_sub %>% ggplot()
 ```
 
-Mapping Layer
+### Mapping 
 
 ```{r}
 df_sub %>% ggplot(aes(x = abdominal_diameter,
@@ -192,6 +194,8 @@ df_sub %>% ggplot(aes(x = abdominal_diameter,
 df_sub %>% ggplot(aes(abdominal_diameter,
                       bmi))
 ```
+
+### Layers
 
 ```{r}
 
@@ -205,6 +209,8 @@ df_sub %>% ggplot(aes(abdominal_diameter,
   geom_point()+
   geom_smooth(method = "lm")
 ```
+
+### Scales
 
 ```{r}
 df_sub %>% 
@@ -226,6 +232,8 @@ df_sub %>%
   scale_color_manual(values = c("red", "grey", "blue"))
 ```
 
+### Facets
+
 ```{r}
 
 df_sub %>% 
@@ -235,6 +243,8 @@ df_sub %>%
   scale_color_manual(values = c("red", "grey", "blue"))+
   facet_wrap(~hypertension)
 ```
+
+### Theme
 
 ```{r}
 df_sub %>% 
@@ -248,3 +258,353 @@ df_sub %>%
     axis.line.x = element_line(color = "blue"),
     axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+## Common geoms for scientific visualisation
+
+### geom_point()
+
+```{r}
+df_sub %>% 
+  ggplot(aes(abdominal_diameter, bmi, color = diagnosis))+
+  geom_point()
+df_sub %>% 
+  ggplot(aes(abdominal_diameter, bmi, color = diagnosis, shape = diagnosis, size = age))+
+  geom_point()
+```
+
+### geom_text() and geom_text_repel()
+
+```{r}
+df_sub %>% 
+  mutate(patient = paste0("pat_", 1:60)) %>% 
+  ggplot(aes(abdominal_diameter, bmi, color = diagnosis))+
+  geom_point()+
+  geom_text(aes(label = patient))
+
+df_sub %>% 
+  mutate(patient = paste0("pat_", 1:60)) %>% 
+  ggplot(aes(abdominal_diameter, bmi, color = diagnosis))+
+  geom_point()+
+  ggrepel::geom_text_repel(aes(label = patient))
+```
+
+### geom_boxplot() and geom_violin()
+
+```{r}
+df_sub %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  geom_boxplot()
+
+df_sub %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, color = diagnosis))+
+  geom_boxplot()+
+  geom_point()
+
+
+df_sub %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, color = diagnosis))+
+  geom_violin()
+```
+
+### geom_bar() & geom_col()
+
+```{r}
+df_sub %>% 
+  filter(age < 75) %>% 
+  ggplot(aes(diagnosis))+
+  geom_bar()
+df_sub %>% 
+  filter(age < 75) %>% 
+  count(diagnosis) %>% 
+  ggplot(aes(diagnosis, n))+
+  geom_col()
+```
+
+```{r}
+#| fig-height: 12
+#| fig-width: 8
+df_plot <- df_sub %>% 
+  filter(bmi > 20) %>% 
+  mutate(old = ifelse(age > 75, "older patient", "younger patient")) 
+
+p1 <- df_plot %>% 
+  ggplot(aes(diagnosis, fill = old))+
+  geom_bar(position = "stack")
+
+p2 <- df_plot %>% 
+  ggplot(aes(diagnosis, fill = old))+
+  geom_bar(position = "dodge")
+
+p3 <- df_plot%>% 
+  ggplot(aes(diagnosis, fill = old))+
+  geom_bar(position = "fill")
+
+patchwork::wrap_plots(list(p1,p2,p3), ncol = 1, guides = "collect")
+```
+
+```{r}
+df_sub %>% 
+  ggplot(aes(bmi))+
+  geom_histogram()
+
+
+df_sub %>% 
+  ggplot(aes(bmi))+
+  geom_density()
+```
+
+### stat_summary()
+
+```{r}
+df_sub %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  stat_summary(geom = "bar")+
+  stat_summary(geom = "errorbar")+
+  geom_point()
+```
+
+## Beautifying plots
+
+### labs()
+
+```{r}
+
+df_sub %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  stat_summary(geom = "bar")+
+  stat_summary(geom = "errorbar")+
+  geom_point()+
+  labs(x = "Diagnosis", y = "Abdominal aortic diameter",
+       title = "Aortic diameter by diagnosis",
+       subtitle = "Only abdominal shown",
+       caption = "Bars show mean +- SE")
+```
+
+```{r}
+df_sub %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL")) %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, fill = diagnosis))+
+  stat_summary(geom = "bar")+
+  stat_summary(geom = "errorbar", width = 0.3)+
+  geom_point(size = 2.5)+
+  labs(x = "Diagnosis", y = "Abdominal aortic diameter",
+       title = "Aortic diameter by diagnosis",
+       subtitle = "Only abdominal shown",
+       caption = "Bars show mean +- SE",
+       fill = "Diagnosis")+
+  scale_fill_manual(values = thematic::okabe_ito(3))+
+  theme_light()
+```
+
+# scales
+
+[R package](https://scales.r-lib.org/)
+
+```{r}
+df_plot <- df_sub %>% 
+  filter(bmi > 20) %>% 
+  mutate(old = ifelse(age > 75, "older patient", "younger patient")) 
+
+df_plot%>% 
+  ggplot(aes(diagnosis, fill = old))+
+  geom_bar(position = "fill")
+
+df_plot%>% 
+  ggplot(aes(diagnosis, fill = old))+
+  geom_bar(position = "fill")+
+  scale_y_continuous(labels = scales::label_percent())
+```
+
+### theme_x() - prebuilt themes
+
+```{r}
+#| fig-width: 14
+p1 <- df_sub %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL")) %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, fill = diagnosis))+
+  stat_summary(geom = "bar")+
+  stat_summary(geom = "errorbar", width = 0.3)+
+  geom_point(size = 2.5)+
+  labs(x = "Diagnosis", y = "Abdominal aortic diameter",
+       title = "Default Theme",
+       caption = "Bars show mean +- SE",
+       fill = "Diagnosis")+
+  scale_fill_manual(values = thematic::okabe_ito(3))
+
+p2 <- df_sub %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL")) %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, fill = diagnosis))+
+  stat_summary(geom = "bar")+
+  stat_summary(geom = "errorbar", width = 0.3)+
+  geom_point(size = 2.5)+
+  labs(x = "Diagnosis", y = "Abdominal aortic diameter",
+       title = "theme_light()",
+       caption = "Bars show mean +- SE",
+       fill = "Diagnosis")+
+  scale_fill_manual(values = thematic::okabe_ito(3))+
+  theme_light()
+
+p3 <- df_sub %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL")) %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, fill = diagnosis))+
+  stat_summary(geom = "bar")+
+  stat_summary(geom = "errorbar", width = 0.3)+
+  geom_point(size = 2.5)+
+  labs(x = "Diagnosis", y = "Abdominal aortic diameter",
+       title = "theme_classc()",
+       caption = "Bars show mean +- SE",
+       fill = "Diagnosis")+
+  scale_fill_manual(values = thematic::okabe_ito(3))+
+  theme_classic()
+
+
+p4 <- df_sub %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL")) %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, fill = diagnosis))+
+  stat_summary(geom = "bar")+
+  stat_summary(geom = "errorbar", width = 0.3)+
+  geom_point(size = 2.5)+
+  labs(x = "Diagnosis", y = "Abdominal aortic diameter",
+       title = "theme_void()",
+       caption = "Bars show mean +- SE",
+       fill = "Diagnosis")+
+  scale_fill_manual(values = thematic::okabe_ito(3))+
+  theme_void()
+
+patchwork::wrap_plots(list(p1,p2,p3,p4))
+
+
+```
+
+# forcats
+
+## fct_relevel()
+
+```{r}
+df_sub %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, color = diagnosis))+
+  geom_boxplot()+
+  scale_color_manual(values = c("red", "grey", "blue"))
+```
+
+```{r}
+df_sub %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL")) %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, color = diagnosis))+
+  geom_boxplot()+
+  scale_color_manual(values = c("red", "grey", "blue"))
+```
+
+## fct_reorder()
+
+```{r}
+df_sub %>% 
+  mutate(diagnosis = fct_reorder(diagnosis, abdominal_diameter)) %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, color = diagnosis))+
+  geom_boxplot()+
+  scale_color_manual(values = c("red", "grey", "blue"))
+```
+
+# Mean separation
+
+```{r}
+library(rstatix)
+df_sub %>% 
+  t_test(abdominal_diameter ~ diagnosis)
+df_sub %>% 
+  group_by(hypertension) %>% 
+  t_test(abdominal_diameter ~ diagnosis)
+```
+
+```{r}
+stats <- df_sub %>% 
+  rstatix::t_test(abdominal_diameter ~ diagnosis) %>% 
+  add_xy_position()
+  
+  
+df_sub %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  geom_boxplot()+
+  geom_point()+
+  ggpubr::stat_pvalue_manual(stats)
+```
+
+```{r}
+
+stats <- df_sub %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL")) %>% 
+  rstatix::t_test(abdominal_diameter ~ diagnosis) %>% 
+  add_xy_position()
+  
+  
+df_sub %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL")) %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  geom_boxplot()+
+  geom_point()+
+  ggpubr::stat_pvalue_manual(stats)
+```
+
+# Tasks
+
+## Easy
+
+E1: Subset the dataset to include only contain 3 observations per diagnosis. Create a box plot of aortic diameter. Repeat the sub-setting and the plotting. Is the plot changing?
+
+E2: Repeat this with 10 observations per diagnosis. How stable is the re-sampling then?
+
+E3: Lets stick with the 10 observations per observations. Create a boxplot again. Add points on top of it.
+
+E4: What is the difference between `fill` and `color` for geom_boxplot? Try it out by adding some color to your boxplots.
+
+E4: Create a scatter plot using BMI and abdominal aortic diameter. Do you think there is connection?
+
+E5: Reuse the code for the scatter plot. Set the alpha of the points to 0.5 by using `geom_point(alpha = 0.5)`. What happens? How does the plot change when you change the value?
+
+E6: Use the same process as above to try some values for the shape of `geom_point()`. The vlaues range from 0 to 25. Which one is a square with a cross in it?
+
+E7: Using `aes()`, set the size of the points to age. What does the plot look like?
+
+E8: Try setting the shape of the points by age. What is going wrong?
+
+E5: Filter the original data set to patients with a BMI larger than 20. How many patients remain per diagnosis? Plot a bar chart to visualise it.
+
+## Medium
+
+M1: Create a box plot of abdominal aortic diameter. Reorder the X axis to have the CTRL diagnosis be the reference level
+
+M2: Recreate the scatter plot from above. Color the points by diagnosis.
+
+M3: Adjust the color code to something of your liking.
+
+M4: Use geom_histogram() to visualise the distribution of abdominal diameter. Facet using the diagnosis.
+
+M5: Sample your data to 10 observations per diagnosis. Use `stat_summary()` to generate a bar chart of thoracic diameter by diagnosis. Add error bars and individual observations.
+
+M6: Building on the previous task, improve the looks of the previous plot like you would for an important presentation. Adjust Axis labels, fix the order on the x axis, give the plot a title. Color the bars by diagnosis. Try to make it as pleasing as possible (in your eyes).
+
+M7: Sample your data to 3 observations per diagnosis. Test the difference in thoracic diameter between the diagnoses. Is the difference significant? Repeat the sampling and test again. Increase the number of observations per diagnosis to 5 and 10. How do the p-values change?
+
+## Hard
+
+H1: What happens when you run the following code?
+
+```{r}
+#| eval: false
+df <- read_tsv(here("data", "aneurysm_survey", "example_data.txt"))
+df_plot <- df %>% 
+  group_by(diagnosis, hypertension) %>% 
+  slice_sample(n = 5) %>% 
+  ungroup() %>% 
+  mutate(hypertension = ifelse(hypertension, "present", "normal bp"))
+
+df_plot  %>% 
+  ggplot(aes(hypertension, thoracic_diameter, color = diagnosis))+
+  geom_boxplot()
+```
+
+H2: Try adding points to the plot using `geom_point()`. What happens? Can you fix their position? Hint: look at the `position` argument of `geom_point()`.
+
+H3: Using what we learned last session, build an expression plot of *IL6* using the airway data. Best use `geom_boxplot()` and `geom_point()`.
+
+H4: Can you add the significance to the plot?

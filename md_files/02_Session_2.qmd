@@ -87,6 +87,8 @@ As always, we will start with some data. In this case, the same aneurysm data we
 df <- read_tsv(here("data", "aneurysm_survey", "example_data.txt"))
 ```
 
+Lets take a look:
+
 ```{r}
 df
 ```
@@ -167,7 +169,7 @@ df %>%
 
 ## Basics of data visualisation with ggplot
 
-We
+We are gonna walk through the general anatomy of a ggplot plot. For that, we're subsetting our data using the `slice_sample()` function. We're subsetting to 10 observations per diagnosis and hypertension status. The `set.seed()` function determines, how random selection by `slice_sample()` works and guarantees we will have the same results every time.
 
 ```{r}
 df
@@ -180,12 +182,18 @@ df_sub <- df %>%
 
 ### Data 
 
+The first layer of a ggplot is the underlying data; we can provide it by passing it to the `data` argument, of by piping our data into ggplot. As a result, we will get a completely empty plot. Let's fill it up a bit.
+
 ```{r}
 ggplot(data= df_sub)
 df_sub %>% ggplot()
 ```
 
 ### Mapping 
+
+The mapping connects variable in our data to specific aspects of the plot. Here, we map abdominal diameter to the x axis and BMI to the y axis.
+
+The mapping takes place using the aesthetics, `aes()`, function. The first argument is the x, the second the y. If you run the code below, you will see a plot with the respective axes already labeled and created.
 
 ```{r}
 df_sub %>% ggplot(aes(x = abdominal_diameter,
@@ -197,13 +205,58 @@ df_sub %>% ggplot(aes(abdominal_diameter,
 
 ### Layers
 
+Layers in ggplot determine how the data is visualised. It consists of three parts:
+
+1.  Geometry or geom: how the data is displayed, lines, points, rectangles.
+2.  Statistical transformation: what is displayed? Is it the actual values, is it a summary statistic or accumulation?
+3.  Position adjustment: where is the data displayed, does it need to be shifted?
+
+In later portions, we will walk through some of the more common `geom_X()` functions. For now, we are using the `geom_point()` to generate a scatter plot.
+
 ```{r}
 
 df_sub %>% ggplot(aes(abdominal_diameter,
                       bmi))+
   geom_point()
+```
 
+You can also map more than just the X and Y coordinates using `geom_point()`. To find out what is possible, run `?geom_point()` and scroll down to the Aesthetics header. You will learn that in `geom_point()` you can map the following values:
 
+-   X
+
+-   Y
+
+-   alpha: how transparent the point is
+
+-   color: what color the point is (outline)
+
+-   fill: what color the point is filled with (only applies in certain shapes)
+
+-   group: which group the point belongs to, special case
+
+-   shape: what point shape is used
+
+-   size: the size of the point
+
+-   stroke: what linetype to use for the point, also somewhat of a special case
+
+The X and y coordinates are mandatory, the rest are optional. You can map variables to these values using the `aes()` function, or set their values to a specific value:
+
+```{r}
+
+df_sub %>% ggplot(aes(abdominal_diameter,
+                      bmi, 
+                      color = diagnosis))+
+  geom_point()
+
+df_sub %>% ggplot(aes(abdominal_diameter,
+                      bmi))+
+  geom_point(color = "red")
+```
+
+We can also stack multiple layers on top of each other by adding another geom, in this case `geom_smooth()`, which generates a linear model to display on top of your data.
+
+```{r}
 df_sub %>% ggplot(aes(abdominal_diameter,
                       bmi))+
   geom_point()+
@@ -211,6 +264,8 @@ df_sub %>% ggplot(aes(abdominal_diameter,
 ```
 
 ### Scales
+
+Scales determine how your mapped aesthetics change with changing values; everything to do with axes and legends comes down to scales. We can map color to diagnosis and then change the color scale to something else. This includes rebuilt color scales like `scale_color_viridis_d()`, where [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html) is the color palette and the "d" determines the use of the distinct color palette (opposed to continuous or binned), or the use of `scale_color_manual()`, where we can set the values manually.
 
 ```{r}
 df_sub %>% 
@@ -232,7 +287,19 @@ df_sub %>%
   scale_color_manual(values = c("red", "grey", "blue"))
 ```
 
+We can also change the way the X and Y axes behave. We can generally have a distinction between continuous and distinct scales with `scale_y_continous()` or `scale_y_discrete()`. In our case, we have continuous data, so we will stick to that, but we can also use a transformation like log10 by using `scale_y_log10()`.
+
+```{r}
+df_sub %>% 
+  ggplot(aes(abdominal_diameter,
+             bmi, color = diagnosis))+
+  geom_point()+
+  scale_y_log10()
+```
+
 ### Facets
+
+Facets are a way to generate a number of smaller subplots for certain aspects of the data. Here we facet by hypertension, generating 2 plots, one for patients with hypertension, one for patients without. You can find out more about this using `?Facet_wrap()` or `?facet_grid()`.
 
 ```{r}
 
@@ -245,6 +312,8 @@ df_sub %>%
 ```
 
 ### Theme
+
+Themes in ggplot are the way to change anything that is not directly the data. The system is complex, but extensive: You can modify the grid lines using `panel.grid`, with separate arguments for major and minor grid lines, in X and Y driection, `panel.grid.major.x` and `panel.grid.minor.y` for example. You can modify the axis lines using `axis.line`, shown below. You can adjust the text size for the axis labels using `axis.title`. all these options are found using the `?theme` command. Here, it is def. worth doing some googeling or asking your favorite LLM.
 
 ```{r}
 df_sub %>% 
@@ -261,7 +330,11 @@ df_sub %>%
 
 ## Common geoms for scientific visualisation
 
+As briefly touched upon in the scales section, for a visualisation, a lot depends on the kind of data that you have. The largest distinction that we have is between discrete and continuous data. Discrete data is data with categories, where nothing can lie in between, like treated and untreated. Continuous variables are like our BMI or diameter measurements. Depending on these distinctions, different kinds of visualisations can make sense.
+
 ### geom_point()
+
+`geom_point()` is used to create a scatter plot. It can handle both discrete and continuous data. Points are also very flexible with regards to the aesthetics you can plot.
 
 ```{r}
 df_sub %>% 
@@ -273,6 +346,10 @@ df_sub %>%
 ```
 
 ### geom_text() and geom_text_repel()
+
+Oftentimes an add-on to `geom_point()`, `geom_text()` can be used to create text labels to label points. For geom_text(), the label aesthetic is mandatory and determines what the text is. Below is an example where we show the patient ID for each point.
+
+We can also levarage the [ggrepel](https://ggrepel.slowkow.com/) package to have our text offset by some random distance. This does require a bit of fiddeling, but is very useful.
 
 ```{r}
 df_sub %>% 
@@ -288,7 +365,27 @@ df_sub %>%
   ggrepel::geom_text_repel(aes(label = patient))
 ```
 
+Very often, it does not make sense to label every point, but instead only a small selection. For this, we can modify the data argument of just the `geom_text()` geom, filtering using for example `slice_max()`.
+
+```{r}
+
+df_sub %>% 
+  mutate(patient = paste0("pat_", 1:60)) %>% 
+  ggplot(aes(abdominal_diameter, bmi, color = diagnosis))+
+  geom_point()+
+  ggrepel::geom_text_repel(data = . %>% slice_max(abdominal_diameter, n = 5), 
+                           aes(label = patient))
+df_sub %>% 
+  mutate(patient = paste0("pat_", 1:60)) %>% 
+  ggplot(aes(abdominal_diameter, bmi, color = diagnosis))+
+  geom_point()+
+  ggrepel::geom_text_repel(data = . %>% filter(diagnosis == "AAA"), 
+                           aes(label = patient))
+```
+
 ### geom_boxplot() and geom_violin()
+
+One way to generate a plot to show distinction between groups is `geom_boxplot()`. Another would be `geom_violin()`, although there is almost never a good use case for violin plots. You can also stack `geom_point()` on top of the boxplot.
 
 ```{r}
 df_sub %>% 
@@ -308,17 +405,32 @@ df_sub %>%
 
 ### geom_bar() & geom_col()
 
+To generate bar charts, we can use `geom_bar()` or `geom_col()`. `geom_bar()` counts the number of observations and generates a bar from it. It only takes a X OR a Y aesthetic, not both.
+
 ```{r}
 df_sub %>% 
   filter(age < 75) %>% 
   ggplot(aes(diagnosis))+
   geom_bar()
+```
+
+`geom_col()` display a number in the data. We can generate a count using the `count()` function and then specify the two aesthetics for `geom_col()`.
+
+```{r}
 df_sub %>% 
   filter(age < 75) %>% 
   count(diagnosis) %>% 
   ggplot(aes(diagnosis, n))+
   geom_col()
 ```
+
+Bar plots also can appear in three different varietiesm, when more than one bar is created per category:
+
+-   stack: the bars are stacked on top of each other, the y axis is absolute numbers
+
+-   dodge: the bars are next to each other, the y axis is absolute numbers
+
+-   fill: the bars are stacked on top of each other, the y axis is proportions, so sums up to 1.
 
 ```{r}
 #| fig-height: 12
@@ -342,11 +454,14 @@ p3 <- df_plot%>%
 patchwork::wrap_plots(list(p1,p2,p3), ncol = 1, guides = "collect")
 ```
 
+### geom_histgram() and geom_density()
+
+To visualise the distribution of a variable, `geom_histogram()` and `geom_density()` can be very useful. The histogram counts the (binned) data, the density plot normalises the area under the curve to 1, but shows the same data.
+
 ```{r}
 df_sub %>% 
   ggplot(aes(bmi))+
   geom_histogram()
-
 
 df_sub %>% 
   ggplot(aes(bmi))+
@@ -354,6 +469,8 @@ df_sub %>%
 ```
 
 ### stat_summary()
+
+It is quite common to want to display some sort of summary statistic of your data, such as a mean of you samples. In scientific populations, usually this is paired with something like error bars. We can create a plot like this using `stat_summary()`. Be default, it summarises the data using mean and standard error of the mean, but you can change this with the `fun` argument.
 
 ```{r}
 df_sub %>% 
@@ -365,7 +482,11 @@ df_sub %>%
 
 ## Beautifying plots
 
+We've so far talked about ways to visualise data. Other than that, a lot goes into making a plot readable and visually appealing. The next section will discuss how to change writing on the plots, adjust visuals, add aids and so on.
+
 ### labs()
+
+The labs() function is the place to go to change writing about your data. You can adjust the title, add a subtitle, change axis labels as well as labels for other mapped aesthetics.
 
 ```{r}
 
@@ -379,6 +500,8 @@ df_sub %>%
        subtitle = "Only abdominal shown",
        caption = "Bars show mean +- SE")
 ```
+
+Through an (oftentimes) iterative process, a plot goes from the raw form to a final product, where lots of things need to be adjusted. This does not happen for every plot, but for anythign that you might want to share in a presentation or in a paper. Below is an example of our `stat_summary()` plot, spruced up a bit to look a little better.
 
 ```{r}
 df_sub %>% 
@@ -396,9 +519,9 @@ df_sub %>%
   theme_light()
 ```
 
-# scales
+### scales
 
-[R package](https://scales.r-lib.org/)
+scales is a [R package](https://scales.r-lib.org/) for the handling of scales and labels of scales. You might want to explore it for specific needs, but below we use it to specify the labels on a bar plot with the "fill" option, so the the y axis shows percentage labels:
 
 ```{r}
 df_plot <- df_sub %>% 
@@ -416,6 +539,8 @@ df_plot%>%
 ```
 
 ### theme_x() - prebuilt themes
+
+The default background of a ggplot is grey, with white grid lines. There is a range of [pre-built themes](https://ggplot2.tidyverse.org/reference/ggtheme.html), that you can add on to your plots. Below is a selection, but some googling goes a long way.
 
 ```{r}
 #| fig-width: 14
@@ -478,7 +603,11 @@ patchwork::wrap_plots(list(p1,p2,p3,p4))
 
 # forcats
 
+A lot of the aspects of plotting with ggplot happen below the surface, where a lot of the complexity is hidden. One of these things that you do need to interact with are factors and factor levels. A lot of variables are converted to factors and then these factor levels are used to infer order. We need to be able to make changes to this system and luckily, there is a [package](https://forcats.tidyverse.org/) for this, forcats. We will be using mostly `fct_relevel()` and `fct_reorder()`, but a wide variety exists.
+
 ## fct_relevel()
+
+If we're building a boxplot like below with the categorical variable diagnosis on the x axis, by default, it is alphabetically ordered. While not technically wrong, we do not want this. Instead, we would want the CTRL level to be the first level.
 
 ```{r}
 df_sub %>% 
@@ -486,6 +615,8 @@ df_sub %>%
   geom_boxplot()+
   scale_color_manual(values = c("red", "grey", "blue"))
 ```
+
+For this, we can use `fct_relevel()`. Together with `mutate()`, we overwrite the existing diagnosis variable, replacing it with a modified version, where we set CTRL to be the reference level. Note that the color code also changes, as it depends on the order of the factor levels!
 
 ```{r}
 df_sub %>% 
@@ -496,6 +627,8 @@ df_sub %>%
 ```
 
 ## fct_reorder()
+
+Another way to set the levels is to use numerical values of different variables.
 
 ```{r}
 df_sub %>% 

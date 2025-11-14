@@ -13,7 +13,7 @@ library(tidyverse)
 ## E1, E2, E3
 
 ```{r}
-words <- c("This", "is", "so", "grat")
+words <- c("This", "is", "so", "so", "grat")
 length(words)
 class(words)
 ```

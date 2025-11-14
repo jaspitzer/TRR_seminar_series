@@ -180,7 +180,7 @@ df_sub <- df %>%
   ungroup()
 ```
 
-### Data 
+### Data
 
 The first layer of a ggplot is the underlying data; we can provide it by passing it to the `data` argument, of by piping our data into ggplot. As a result, we will get a completely empty plot. Let's fill it up a bit.
 
@@ -189,7 +189,7 @@ ggplot(data= df_sub)
 df_sub %>% ggplot()
 ```
 
-### Mapping 
+### Mapping
 
 The mapping connects variable in our data to specific aspects of the plot. Here, we map abdominal diameter to the x axis and BMI to the y axis.
 
@@ -682,7 +682,7 @@ df_sub %>%
 
 ## Easy
 
-E1: Subset the dataset to include only contain 3 observations per diagnosis. Create a box plot of aortic diameter. Repeat the sub-setting and the plotting. Is the plot changing?
+E1: Subset the dataset to include only contain 3 observations per diagnosis. Create a box plot of abdominal aortic diameter. Repeat the sub-setting and the plotting. Is the plot changing?
 
 E2: Repeat this with 10 observations per diagnosis. How stable is the re-sampling then?
 
@@ -690,17 +690,17 @@ E3: Lets stick with the 10 observations per observations. Create a boxplot again
 
 E4: What is the difference between `fill` and `color` for geom_boxplot? Try it out by adding some color to your boxplots.
 
-E4: Create a scatter plot using BMI and abdominal aortic diameter. Do you think there is connection?
+E5: Create a scatter plot using BMI and abdominal aortic diameter. Do you think there is connection?
 
-E5: Reuse the code for the scatter plot. Set the alpha of the points to 0.5 by using `geom_point(alpha = 0.5)`. What happens? How does the plot change when you change the value?
+E6: Reuse the code for the scatter plot. Set the alpha of the points to 0.5 by using `geom_point(alpha = 0.5)`. What happens? How does the plot change when you change the value?
 
-E6: Use the same process as above to try some values for the shape of `geom_point()`. The vlaues range from 0 to 25. Which one is a square with a cross in it?
+E7: Use the same process as above to try some values for the shape of `geom_point()`. The vlaues range from 0 to 25. Which one is a square with a cross in it?
 
-E7: Using `aes()`, set the size of the points to age. What does the plot look like?
+E8: Using `aes()`, set the size of the points to age. What does the plot look like?
 
-E8: Try setting the shape of the points by age. What is going wrong?
+E9: Try setting the shape of the points by age. What is going wrong?
 
-E5: Filter the original data set to patients with a BMI larger than 20. How many patients remain per diagnosis? Plot a bar chart to visualise it.
+E10: Filter the original data set to patients with a BMI larger than 20. How many patients remain per diagnosis? Plot a bar chart to visualise it.
 
 ## Medium
 

@@ -1,0 +1,358 @@
+---
+title: "solutions 2"
+author: "JS"
+format: 
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 4
+    df-print: paged
+    grid: 
+      body-width: 1200px
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(here)
+```
+
+# Easy
+
+## E1: Subset the dataset to include only contain 3 observations per diagnosis. Create a box plot of abdominal aortic diameter. Repeat the sub-setting and the plotting. Is the plot changing?
+
+```{r}
+df <- read_tsv(here::here("data/aneurysm_survey/example_data.txt"))
+```
+
+```{r}
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 3) %>% 
+  ungroup() %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  geom_boxplot()
+
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 3) %>% 
+  ungroup() %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  geom_boxplot()
+```
+
+## E2: Repeat this with 10 observations per diagnosis. How stable is the re-sampling then?
+
+```{r}
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 10) %>% 
+  ungroup() %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  geom_boxplot()
+
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 10) %>% 
+  ungroup() %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  geom_boxplot()
+```
+
+## E3: Lets stick with the 10 observations per observations. Create a boxplot again. Add points on top of it.
+
+```{r}
+
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 10) %>% 
+  ungroup() %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  geom_boxplot()+
+  geom_point()
+```
+
+## E4: What is the difference between `fill` and `color` for geom_boxplot? Try it out by adding some color to your boxplots.
+
+```{r}
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 10) %>% 
+  ungroup() %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, color = diagnosis))+
+  geom_boxplot()+
+  geom_point()
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 10) %>% 
+  ungroup() %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, fill = diagnosis))+
+  geom_boxplot()+
+  geom_point()
+
+```
+
+## E5: Create a scatter plot using BMI and abdominal aortic diameter. Do you think there is connection?
+
+```{r}
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 10) %>% 
+  ungroup() %>% 
+  ggplot(aes(bmi, abdominal_diameter, fill = diagnosis))+
+  geom_point()
+df %>% 
+  # group_by(diagnosis) %>% 
+  # slice_sample(n = 10) %>% 
+  # ungroup() %>% 
+  ggplot(aes(bmi, abdominal_diameter, fill = diagnosis))+
+  geom_point()
+```
+
+## E6: Reuse the code for the scatter plot. Set the alpha of the points to 0.5 by using `geom_point(alpha = 0.5)`. What happens? How does the plot change when you change the value?
+
+```{r}
+df %>% 
+  # group_by(diagnosis) %>% 
+  # slice_sample(n = 10) %>% 
+  # ungroup() %>% 
+  ggplot(aes(bmi, abdominal_diameter, fill = diagnosis))+
+  geom_point(alpha = 0.5)
+df %>% 
+  # group_by(diagnosis) %>% 
+  # slice_sample(n = 10) %>% 
+  # ungroup() %>% 
+  ggplot(aes(bmi, abdominal_diameter, fill = diagnosis))+
+  geom_point(alpha = 0.2)
+```
+
+## E7: Use the same process as above to try some values for the shape of `geom_point()`. The vlaues range from 0 to 25. Which one is a square with a cross in it?
+
+```{r}
+df %>% 
+  ggplot(aes(bmi, abdominal_diameter))+
+  geom_point(shape = 12)
+df %>% 
+  ggplot(aes(bmi, abdominal_diameter))+
+  geom_point(shape = 7)
+```
+
+## E8: Using `aes()`, set the size of the points to age. What does the plot look like?
+
+```{r}
+df %>% 
+  ggplot(aes(bmi, abdominal_diameter, size = age))+
+  geom_point(shape = 7)
+```
+
+## E9: Try setting the shape of the points by age. What is going wrong?
+
+```{r}
+#| error: true
+
+df %>% 
+  ggplot(aes(bmi, abdominal_diameter, shape = age))+
+  geom_point()
+```
+
+## E10: Filter the original data set to patients with a BMI larger than 20. How many patients remain per diagnosis? Plot a bar chart to visualise it.
+
+```{r}
+df %>% 
+  filter(bmi > 20) %>% 
+  ggplot(aes(diagnosis))+
+  geom_bar()
+```
+
+# Medium
+
+## M1: Create a box plot of abdominal aortic diameter. Reorder the X axis to have the CTRL diagnosis be the reference level
+
+```{r}
+df %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  geom_boxplot()
+df %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL")) %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  geom_boxplot()
+```
+
+## M2: Recreate the scatter plot from above. Color the points by diagnosis.
+
+```{r}
+df %>% 
+  ggplot(aes(bmi, abdominal_diameter, color = diagnosis))+
+  geom_point()
+```
+
+## M3: Adjust the color code to something of your liking.
+
+```{r}
+
+df %>% 
+  ggplot(aes(bmi, abdominal_diameter, color = diagnosis))+
+  geom_point()+
+  scale_color_manual(values = c("purple", "limegreen", "lightblue"))
+```
+
+## M4: Use geom_histogram() to visualise the distribution of abdominal diameter. Facet using the diagnosis.
+
+```{r}
+df %>% 
+  ggplot(aes(abdominal_diameter))+
+  geom_histogram()+
+  facet_wrap(~diagnosis)
+```
+
+## M5: Sample your data to 10 observations per diagnosis. Use `stat_summary()` to generate a bar chart of thoracic diameter by diagnosis. Add error bars and individual observations.
+
+```{r}
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 10) %>% 
+  ungroup() %>% 
+  ggplot(aes(diagnosis, abdominal_diameter))+
+  stat_summary(geom = "bar")+
+  stat_summary(geom = "errorbar")+
+  geom_point()
+```
+
+## M6: Building on the previous task, improve the looks of the previous plot like you would for an important presentation. Adjust Axis labels, fix the order on the x axis, give the plot a title. Color the bars by diagnosis. Try to make it as pleasing as possible (in your eyes).
+
+```{r}
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 10) %>% 
+  ungroup() %>% 
+  mutate(diagnosis = fct_relevel(diagnosis, "CTRL")) %>% 
+  ggplot(aes(diagnosis, abdominal_diameter, fill = diagnosis))+
+  stat_summary(geom = "bar")+
+  stat_summary(geom = "errorbar", width = 0.3, alpha = 0.6)+
+  geom_point()+
+  scale_fill_manual(values = thematic::okabe_ito(n = 3))+
+  theme_light()+
+  labs(x = "Diagnosis", y = "Abdominal Aortic Diameter",
+       title = "Aortic Diameter by Diagnosis",
+       caption = "Bars show mean +- SE",
+       fill = "Diagnosis:")+
+  theme(legend.position = "bottom")
+```
+
+## M7: Sample your data to 3 observations per diagnosis. Test the difference in thoracic diameter between the diagnoses. Is the difference significant? Repeat the sampling and test again. Increase the number of observations per diagnosis to 5 and 10. How do the p-values change?
+
+```{r}
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 3) %>% 
+  ungroup() %>% 
+  rstatix::t_test(thoracic_diameter ~ diagnosis)
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 3) %>% 
+  ungroup() %>% 
+  rstatix::t_test(thoracic_diameter ~ diagnosis)
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 3) %>% 
+  ungroup() %>% 
+  rstatix::t_test(thoracic_diameter ~ diagnosis)
+
+
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 5) %>% 
+  ungroup() %>% 
+  rstatix::t_test(thoracic_diameter ~ diagnosis)
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 5) %>% 
+  ungroup() %>% 
+  rstatix::t_test(thoracic_diameter ~ diagnosis)
+
+
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 10) %>% 
+  ungroup() %>% 
+  rstatix::t_test(thoracic_diameter ~ diagnosis)
+df %>% 
+  group_by(diagnosis) %>% 
+  slice_sample(n = 10) %>% 
+  ungroup() %>% 
+  rstatix::t_test(thoracic_diameter ~ diagnosis)
+```
+
+# Hard
+
+## H1: What happens when you run the following code?
+
+```{r}
+df <- read_tsv(here("data", "aneurysm_survey", "example_data.txt"))
+df_plot <- df %>% 
+  group_by(diagnosis, hypertension) %>% 
+  slice_sample(n = 5) %>% 
+  ungroup() %>% 
+  mutate(hypertension = ifelse(hypertension, "present", "normal bp"))
+
+df_plot  %>% 
+  ggplot(aes(hypertension, thoracic_diameter, color = diagnosis))+
+  geom_boxplot()
+```
+
+## H2: Try adding points to the plot using `geom_point()`. What happens? Can you fix their position? Hint: look at the `position` argument of `geom_point()`.
+
+```{r}
+df_plot <- df %>% 
+  group_by(diagnosis, hypertension) %>% 
+  slice_sample(n = 5) %>% 
+  ungroup() %>% 
+  mutate(hypertension = ifelse(hypertension, "present", "normal bp"))
+
+df_plot  %>% 
+  ggplot(aes(hypertension, thoracic_diameter, color = diagnosis))+
+  geom_boxplot()+
+  geom_point()
+
+df_plot  %>% 
+  ggplot(aes(hypertension, thoracic_diameter, color = diagnosis))+
+  geom_boxplot()+
+  geom_point(position = position_dodge(width  = 0.75))
+```
+
+## H3: Using what we learned last session, build an expression plot of *IL6* using the airway data. Best use `geom_boxplot()` and `geom_point()`.
+
+```{r}
+counts <- read_tsv(here::here("data/expression_data/counts.txt")) 
+annotation <- read_tsv(here::here("data/expression_data/annotation.txt"))
+
+counts_long <- counts %>% pivot_longer( # take the data and pivot longer 
+  cols = -gene, # select the columns to pivot longer, here everything but the gene column (similar to select) 
+  names_to = "sample", # put the column names into a new column called sample 
+  values_to = "count") # put the corresponding values ion a new column called count ) 
+
+anno_filtered <- annotation %>% select(Run, dex, cell)
+
+df_long <- counts_long %>% inner_join(anno_filtered, # join in the filtered annotation 
+                                      by = join_by(sample == Run))
+
+df_long %>% 
+  filter(gene == "IL6") %>% 
+  ggplot(aes(dex, count))+
+  geom_boxplot()+
+  geom_point()
+```
+
+```{r}
+stats <- df_long %>% 
+  filter(gene == "IL6") %>% 
+  rstatix::t_test(count ~ dex) %>% 
+  rstatix::add_xy_position()
+
+df_long %>% 
+  filter(gene == "IL6") %>% 
+  ggplot(aes(dex, count))+
+  geom_boxplot()+
+  geom_point()+
+  ggpubr::stat_pvalue_manual(stats)
+```

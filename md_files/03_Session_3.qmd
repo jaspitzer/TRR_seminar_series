@@ -25,6 +25,23 @@ cyto_table <- read_tsv(here("data", "cyto_table.txt"))
 cyto_table
 ```
 
+```{r}
+p <- cyto_table %>% 
+  ggplot(aes(stimulus, il6))+
+  geom_boxplot()+
+  geom_point()
+p
+```
+
+```{r}
+stats <- cyto_table %>% 
+  rstatix::t_test(il6~stimulus) %>% 
+  rstatix::add_xy_position()
+
+p +
+  ggpubr::stat_pvalue_manual(stats)
+```
+
 # Practice questions
 
 ## Easy

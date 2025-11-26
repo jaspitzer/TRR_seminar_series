@@ -1,0 +1,68 @@
+---
+title: "Repeat and Review - TRR259 seminar Session 3"
+author: "JS"
+format: 
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 4
+    df-print: paged
+    grid: 
+      body-width: 1200px
+editor: visual
+---
+
+```{r}
+library(here)
+library(tidyverse)
+```
+
+```{r}
+cyto_table <- read_tsv(here("data", "cyto_table.txt"))
+```
+
+```{r}
+cyto_table
+```
+
+# Practice questions
+
+## Easy
+
+E1: There is new practise data on the github called cyto_table.txt. Download it, add it to the data folder in your project and read it into R. The data is from stimulation of patients whole blood with various TLR agonists. You have a subset of the data here. The read-out are from a cytokine 10-plex.
+
+E2: Familiarise yourself with the data set. What variables are in the data set? What stimuli were used? How many patients are included? Do you know all the cytokines involved? Google the ones you do not know.
+
+E3: Focus on unstimulated and LPS stimulated samples for know. What is the mean value for each cytokine and stimulus? What is the standard deviation?
+
+E4: Create a box plot of the IL6 concentrations for unstimulated and LPS stimulated samples. Also add the individual measurements as points. Would you think the difference in significant?
+
+E5: Using the Rstatix package and the function `t_test()`, check if your estimate from above was correct. What is the pvalue?
+
+E6: Box plots are not everyone's cup of tea. Recreate the visual from above but with a bar chart with error bars instead. Make sure that the unstimulated samples are first.
+
+E7: How many samples have an IL6 concentration \> 1000? Make a bar chart to visualise it.
+
+E8: Instead of filtering your data set for the questions above, can you create a stacked bar plot for each condition? Can you also use `position = "fill"` to show percentages? Which way to display the data do you prefer?
+
+## Medium
+
+M1: Filter your data frame to only include unstimulated and LPS samples. Using `t_test()` and `group_by()`, figure out which of the 10 cytokines show significant changes.
+
+M2: Repeat the process above for unstimulated and R848 stimluated samples.
+
+M3: Can you combine these two approaches into one? Hint: the solution is in `group_by()`.
+
+M4: Create a plot where the stimulus in on the x axis, the concentration on the Y axis and the cytokine is used to facet. Hint: use `facet_wrap()`. You can use a bar chart with means or a box plot.
+
+M5: Experiment with the scales parameter of `facet_wrap()`. What happens when you set it to "free_y"? Find out more using `?facet_wrap`.
+
+M6: What happens when you used `scale_y_log10()`? Do you think it is a good choice here?
+
+M7: Pick one of the cytokines (your choice). Create a plot using just that cytokine and all stimuli. Add a color code, fix the axes labels, add a title. Create a figure that you would show in a presentation or paper. Make it as pretty as you can.
+
+## Hard
+
+H1: Building on the log10 scale above: Transform your data into log-scaled data using `log2()` and `mutate()`. Repeat the T test you performed earlier. How do the results change? What do you think is more appropriate?
+
+H2: Take your pretty visualisation from above and add significances to it using `stat_pvalue_manual()` from the ggpubr package. Create two versions, one with stars and one with the pValue.
